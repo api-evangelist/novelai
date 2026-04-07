@@ -8,8 +8,8 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - AI
   - Image Generation
-  - Storytelling
   - LLM
+  - Storytelling
 url: https://raw.githubusercontent.com/api-evangelist/novelai/refs/heads/main/apis.yml
 created: '2024-07-02'
 modified: '2026-03-16'

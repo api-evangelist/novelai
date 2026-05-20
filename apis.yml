@@ -29,6 +29,10 @@ apis:
       - type: Documentation
         url: https://api.novelai.net/docs/
 common:
+  - type: GitHubOrganization
+    url: https://github.com/NovelAI
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/novelaitechnologies
   - type: Website
     url: https://novelai.net/
 maintainers:

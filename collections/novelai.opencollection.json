@@ -1,0 +1,1015 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NovelAI Primary API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AppController_healthCheck",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "/user/",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "UserController_createUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_loginUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_changeAccessKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/change-access-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_ssoGoogle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/sso/google",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_changeMailingListConsent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.novelai.net/user/change-mailing-list-consent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_requestEmailVerification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/resend-email-verification",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_verifyEmail",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/verify-email",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getAccountInformation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/information",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getOsanoExternalId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/osano-external-id",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_upsertUserConsent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.novelai.net/user/consent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_requestAccountDeletion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/deletion/request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_deleteAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/deletion/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_requestAccountRecovery",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/recovery/request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_recoverAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/recovery/recover",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_deleteAccountUnchecked",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/delete",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getUserData",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/data",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getCurrentPriority",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/priority",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getGiftKeys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/giftkeys",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getSubscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/subscription",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getKeystore",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/keystore",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_updateKeystore",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.novelai.net/user/keystore",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/objects/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_createObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.novelai.net/user/objects/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/objects/:type/:id",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_editObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.novelai.net/user/objects/:type/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_deleteObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.novelai.net/user/objects/:type/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getClientSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/clientsettings",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_updateClientSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.novelai.net/user/clientsettings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_batchDeleteObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.novelai.net/user/objects/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_createPersistentToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/create-persistent-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_postUserSubmission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/submission",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getUserSubmission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/submission/:event",
+            "params": [
+              {
+                "name": "event",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_getUserSubmissionVotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/user/vote-submission/:event",
+            "params": [
+              {
+                "name": "event",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_voteSubmission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/vote-submission/:event",
+            "params": [
+              {
+                "name": "event",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UserController_retractSubmissionVote",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.novelai.net/user/vote-submission/:event",
+            "params": [
+              {
+                "name": "event",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "/user/subscription/",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SubscriptionController_bindSubscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/subscription/bind",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "SubscriptionController_changeSubscriptionPlan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/subscription/change",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "/ai/",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate text. IMPORTANT NOTICE FOR EXISTING API TEXTGEN USERS.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/generate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate text using NovelAI's language models.\rIMPORTANT NOTE FOR EXISTING API USERS: We are deprecating Kayra for subscribed users from this API.\rRead more information on the Text Generation documentation at the start of this page."
+        },
+        {
+          "info": {
+            "name": "AIController_aiGeneratePrompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/generate-prompt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_aiGenerateStreamable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/generate-stream",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_annotateImage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/annotate-image",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_aiGenerateImage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/generate-image",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_aiUpscaleImage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/upscale",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_classify",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/classify",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_generateImageTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/ai/generate-image/suggest-tags",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Generate voice from text. The GET endpoint has been deprecated, please use the POST endpoint instead.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/ai/generate-voice",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "seed",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "voice",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "opus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate voice from text. The GET endpoint has been deprecated, please use the POST endpoint instead."
+        },
+        {
+          "info": {
+            "name": "AIController_generateVoicePost",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/generate-voice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "/ai/module/",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIModuleController_allModules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/ai/module/all",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "description: \"Access Token is incorrect.\",\n    type: ApiError,\n  })\n\n    status: HttpStatus.PAYMENT_REQUIRED,\n    description: \"An active subscription required to access this endpoint.\",\n    type: ApiError,\n  })\n\n    description: \"A conflict error occured.\",\n    type: ApiError,\n  })\n\n    description: \"The training request has been successfully sent.\",\n    type: AiModuleDto,\n  })\n\n    description: \"A validation error occured.\",\n    type: ApiError,\n  })\n  async trainModule(\n\n\n  ): Promise<AiModule"
+        },
+        {
+          "info": {
+            "name": "AIModuleController_getModule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/ai/module/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIModuleController_deleteModule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.novelai.net/ai/module/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIModuleController_buyTrainingSteps",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/module/buy-training-steps",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

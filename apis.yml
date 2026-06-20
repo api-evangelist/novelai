@@ -4,7 +4,7 @@ description: >-
   NovelAI is a monthly subscription service for AI-assisted image generation,
   storytelling, or simply a LLM powered sandbox for your imagination.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - AI
   - Image Generation

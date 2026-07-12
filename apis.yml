@@ -29,6 +29,12 @@ apis:
       - type: Documentation
         url: https://api.novelai.net/docs/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/novelai-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/novelai-domain-security.yml
+  - type: Authentication
+    url: authentication/novelai-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/NovelAI
   - type: LinkedIn

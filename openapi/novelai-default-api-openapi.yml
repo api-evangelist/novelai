@@ -1,0 +1,27 @@
+openapi: 3.1.0
+info:
+  title: NovelAI Primary /ai/ /ai/ / API
+  description: "\n      The Primary API describes actions that our Frontend makes against the NovelAI backend.\n\n      In general, third-party NovelAI API users should not engage with the Primary API beyond the /ai/ routes.\n\n      Third-party API users developing user-facing applications must ask for a user's Persistent API token to continue.\n      For security reasons it is not recommended to hold a user's credentials in plaintext.\n\n      IMPORTANT: Existing and new API users must read the upcoming generation-specific documentation:\n\n      Image Generation documentation: https://image.novelai.net/docs/index.html\n      Text Generation documentation: https://text.novelai.net/docs/index.html\n    "
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.novelai.net
+  description: NovelAI Primary API
+tags:
+- name: /
+paths:
+  /:
+    get:
+      operationId: AppController_healthCheck
+      parameters: []
+      responses:
+        '200':
+          description: Everything is running fine.
+      tags:
+      - /
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

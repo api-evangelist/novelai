@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: NovelAI Primary /ai/ /ai/ /ai/module/ API
+  description: "\n      The Primary API describes actions that our Frontend makes against the NovelAI backend.\n\n      In general, third-party NovelAI API users should not engage with the Primary API beyond the /ai/ routes.\n\n      Third-party API users developing user-facing applications must ask for a user's Persistent API token to continue.\n      For security reasons it is not recommended to hold a user's credentials in plaintext.\n\n      IMPORTANT: Existing and new API users must read the upcoming generation-specific documentation:\n\n      Image Generation documentation: https://image.novelai.net/docs/index.html\n      Text Generation documentation: https://text.novelai.net/docs/index.html\n    "
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.novelai.net
+  description: NovelAI Primary API
+tags:
+- name: /ai/module/
+paths:
+  /ai/module/all:
+    get:
+      operationId: AIModuleController_allModules
+      summary: ''
+      description: "description: \"Access Token is incorrect.\",\n    type: ApiError,\n  })\n\n    status: HttpStatus.PAYMENT_REQUIRED,\n    description: \"An active subscription required to access this endpoint.\",\n    type: ApiError,\n  })\n\n    description: \"A conflict error occured.\",\n    type: ApiError,\n  })\n\n    description: \"The training request has been successfully sent.\",\n    type: AiModuleDto,\n  })\n\n    description: \"A validation error occured.\",\n    type: ApiError,\n  })\n  async trainModule(\n\n\n  ): Promise<AiModuleDto> {\n    const user: User = req.user;\n\n    if (!aiTrainingRequest)\n      throw new HttpException(\"Incorrect body.\", HttpStatus.BAD_REQUEST);\n\n    if (\n      !GenerationModelAccessRightsData[aiTrainingRequest.model].canTrainModules\n    )\n      throw new HttpException(\n        \"Specified model does not support module training.\",\n        HttpStatus.BAD_REQUEST,\n      );\nif (!user.hasSubscription())\n      throw new HttpException(\n        \"Incorrect subscription.\",\n        HttpStatus.PAYMENT_REQUIRED,\n      );\nif (aiTrainingRequest.steps < 50)\n      throw new HttpException(\n        \"Training steps amount is too low.\",\n        HttpStatus.CONFLICT,\n      );\n\n    if (\n      user.availableModuleTrainingSteps + user.purchasedModuleTrainingSteps <\n      aiTrainingRequest.steps\n    )\n      throw new HttpException(\n        \"You have an insufficent amount of available training steps.\",\n        HttpStatus.CONFLICT,\n      );\n\n    if (process.env.NODE_ENV === \"production\") {\n      const modules = (\n        await this.aiModuleService.getAllUserModules(user)\n      ).filter((item) => item.status == \"pending\" || item.status == \"training\");\n\n      if (modules.length >= MAX_SIMULTANEOUS_TRAINING_MODULES)\n        throw new HttpException(\n          \"You have reached the limit of concurrently training modules.\",\n          HttpStatus.CONFLICT,\n        );\n    }\n\n    return await this.aiModuleService.trainModule(user, aiTrainingRequest);\n  }"
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AiModuleDto'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/module/
+      security:
+      - bearer: []
+  /ai/module/{id}:
+    get:
+      operationId: AIModuleController_getModule
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiModuleDto'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Module not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/module/
+      security:
+      - bearer: []
+    delete:
+      operationId: AIModuleController_deleteModule
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Module deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiModuleDto'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Module not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/module/
+      security:
+      - bearer: []
+  /ai/module/buy-training-steps:
+    post:
+      operationId: AIModuleController_buyTrainingSteps
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyTrainingStepsRequest'
+      responses:
+        '200':
+          description: Steps have been purchased properly.
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict occured while buying training steps.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/module/
+      security:
+      - bearer: []
+components:
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
+    BuyTrainingStepsRequest:
+      type: object
+      properties:
+        amount:
+          type: integer
+          minimum: 2000
+          maximum: 10000
+          description: Amount of module training steps to purchase.
+      required:
+      - amount
+    AiModuleDto:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Base64-encoded data if ready or it's a training request, error text if error
+        lr:
+          type: number
+          description: Learning rate
+        steps:
+          type: number
+          description: Training steps
+        model:
+          type: string
+          description: Used text generation model for module training
+          default: euterpe-v2
+        lastUpdatedAt:
+          type: number
+          description: UNIX timestamp
+        status:
+          type: string
+          enum:
+          - pending
+          - training
+          - ready
+          - error
+        lossHistory:
+          description: Recorded loss values
+          type: array
+          items:
+            type: number
+        id:
+          type: string
+        name:
+          type: string
+          maxLength: 64
+        description:
+          type: string
+          maxLength: 256
+      required:
+      - data
+      - lr
+      - steps
+      - model
+      - lastUpdatedAt
+      - status
+      - lossHistory
+      - id
+      - name
+      - description
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

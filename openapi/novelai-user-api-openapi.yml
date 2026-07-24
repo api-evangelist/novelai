@@ -1,0 +1,1761 @@
+openapi: 3.1.0
+info:
+  title: NovelAI Primary /ai/ /ai/ /user/ API
+  description: "\n      The Primary API describes actions that our Frontend makes against the NovelAI backend.\n\n      In general, third-party NovelAI API users should not engage with the Primary API beyond the /ai/ routes.\n\n      Third-party API users developing user-facing applications must ask for a user's Persistent API token to continue.\n      For security reasons it is not recommended to hold a user's credentials in plaintext.\n\n      IMPORTANT: Existing and new API users must read the upcoming generation-specific documentation:\n\n      Image Generation documentation: https://image.novelai.net/docs/index.html\n      Text Generation documentation: https://text.novelai.net/docs/index.html\n    "
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.novelai.net
+  description: NovelAI Primary API
+tags:
+- name: /user/
+paths:
+  /user/register:
+    post:
+      operationId: UserController_createUser
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: The user has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserResponse'
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+  /user/login:
+    post:
+      operationId: UserController_loginUser
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '201':
+          description: Login successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessfulLoginResponse'
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Key is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+  /user/change-access-key:
+    post:
+      operationId: UserController_changeAccessKey
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeAccessKeyRequest'
+      responses:
+        '200':
+          description: Access Key change successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessfulLoginResponse'
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/sso/google:
+    post:
+      operationId: UserController_ssoGoogle
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GoogleSSORequest'
+      responses:
+        '201':
+          description: Login successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessfulLoginResponse'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+  /user/change-mailing-list-consent:
+    patch:
+      operationId: UserController_changeMailingListConsent
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeMailingListRequest'
+      responses:
+        '200':
+          description: ''
+        '204':
+          description: Update successful.
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/resend-email-verification:
+    post:
+      operationId: UserController_requestEmailVerification
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailVerificationStartRequest'
+      responses:
+        '201':
+          description: Email verification letter has been sent.
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+  /user/verify-email:
+    post:
+      operationId: UserController_verifyEmail
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailVerificationRequest'
+      responses:
+        '200':
+          description: The email has been successfully verified.
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Verification token was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+  /user/information:
+    get:
+      operationId: UserController_getAccountInformation
+      parameters: []
+      responses:
+        '200':
+          description: Account information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountInformationResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/osano-external-id:
+    get:
+      operationId: UserController_getOsanoExternalId
+      parameters: []
+      responses:
+        '200':
+          description: Osano External ID for this user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OsanoExternalIdResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/consent:
+    put:
+      operationId: UserController_upsertUserConsent
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertConsentRequest'
+      responses:
+        '200':
+          description: Consent settings have been updated.
+        '400':
+          description: A validation error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/deletion/request:
+    post:
+      operationId: UserController_requestAccountDeletion
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeletionStartRequest'
+      responses:
+        '202':
+          description: Your request has been processed. If the email address provided is registered, it will receive a letter with further instructions.
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Cannot delete accounts with active recurring subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/deletion/delete:
+    post:
+      operationId: UserController_deleteAccount
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeletionFinishRequest'
+      responses:
+        '200':
+          description: Account deletion successful.
+        '401':
+          description: Deletion token was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Cannot delete accounts with active recurring subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+  /user/recovery/request:
+    post:
+      operationId: UserController_requestAccountRecovery
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoveryStartRequest'
+      responses:
+        '202':
+          description: Your request has been processed. If the email address provided is registered, it will receive a letter with further instructions.
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+  /user/recovery/recover:
+    post:
+      operationId: UserController_recoverAccount
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoveryFinishRequest'
+      responses:
+        '201':
+          description: Account recovery successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessfulLoginResponse'
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Recovery token was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+  /user/delete:
+    post:
+      operationId: UserController_deleteAccountUnchecked
+      parameters: []
+      responses:
+        '200':
+          description: Account deletion successful.
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Cannot delete accounts with active recurring subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/data:
+    get:
+      operationId: UserController_getUserData
+      parameters: []
+      responses:
+        '200':
+          description: Various user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserAccountDataResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/priority:
+    get:
+      operationId: UserController_getCurrentPriority
+      parameters: []
+      responses:
+        '200':
+          description: Amount of max priority actions left, next max priority action refill (UNIX timestamp) and current task priority.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriorityResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/giftkeys:
+    get:
+      operationId: UserController_getGiftKeys
+      parameters: []
+      responses:
+        '200':
+          description: Purchased Gift Keys.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GiftKeysResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/subscription:
+    get:
+      operationId: UserController_getSubscription
+      parameters: []
+      responses:
+        '200':
+          description: Current subscription, date of expiry and perks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/keystore:
+    get:
+      operationId: UserController_getKeystore
+      parameters: []
+      responses:
+        '200':
+          description: Keystore buffer in Base64 format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetKeystoreResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+    put:
+      operationId: UserController_updateKeystore
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateKeystoreRequest'
+      responses:
+        '200':
+          description: Edit is successful.
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/objects/{type}:
+    get:
+      operationId: UserController_getObjects
+      parameters:
+      - name: type
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: offset
+        required: true
+        in: query
+        schema:
+          type: number
+      - name: limit
+        required: true
+        in: query
+        schema:
+          type: number
+      - name: order
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of serverside-stored objects of that type.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectsResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+    put:
+      operationId: UserController_createObject
+      parameters:
+      - name: type
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDataInput'
+      responses:
+        '200':
+          description: Object created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Specified object was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/objects/{type}/{id}:
+    get:
+      operationId: UserController_getObject
+      parameters:
+      - name: type
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Found object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+    patch:
+      operationId: UserController_editObject
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: type
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDataInput'
+      responses:
+        '200':
+          description: Object edited successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Specified object was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict occured while updating this object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+    delete:
+      operationId: UserController_deleteObject
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: type
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Object deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserData'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Specified object was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/clientsettings:
+    get:
+      operationId: UserController_getClientSettings
+      parameters: []
+      responses:
+        '200':
+          description: Client settings in an arbitrary format.
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+    put:
+      operationId: UserController_updateClientSettings
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Edit is successful.
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/objects/batch:
+    delete:
+      operationId: UserController_batchDeleteObjects
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchDeleteRequest'
+      responses:
+        '200':
+          description: Specified object types have been successfully deleted.
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/create-persistent-token:
+    post:
+      operationId: UserController_createPersistentToken
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePersistentTokenInput'
+      responses:
+        '200':
+          description: Token created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePersistentTokenResponse'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePersistentTokenResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/submission:
+    post:
+      operationId: UserController_postUserSubmission
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSubmissionInput'
+      responses:
+        '200':
+          description: Submission is successful.
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/submission/{event}:
+    get:
+      operationId: UserController_getUserSubmission
+      parameters:
+      - name: event
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User submission
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+  /user/vote-submission/{event}:
+    get:
+      operationId: UserController_getUserSubmissionVotes
+      parameters:
+      - name: event
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User submission votes
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+    post:
+      operationId: UserController_voteSubmission
+      parameters:
+      - name: event
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSubmissionVoteInput'
+      responses:
+        '200':
+          description: Vote is successful.
+        '201':
+          description: ''
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+    delete:
+      operationId: UserController_retractSubmissionVote
+      parameters:
+      - name: event
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSubmissionVoteInput'
+      responses:
+        '200':
+          description: Vote is successful.
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /user/
+      security:
+      - bearer: []
+components:
+  schemas:
+    SubscriptionAvailableTrainingSteps:
+      type: object
+      properties:
+        fixedTrainingStepsLeft:
+          type: number
+          description: Amount of available fixed module training steps left (reset every month)
+        purchasedTrainingSteps:
+          type: number
+          description: Amount of available purchased module training steps left
+      required:
+      - fixedTrainingStepsLeft
+      - purchasedTrainingSteps
+    UpsertConsentRequest:
+      type: object
+      properties:
+        jurisdiction:
+          type: string
+          description: Jurisdiction for the user consents
+          example: US
+        analyticsConsent:
+          type: boolean
+          description: Consent for analytics tracking
+          example: true
+        marketingConsent:
+          type: boolean
+          description: Consent for marketing communications
+          example: true
+        personalizationConsent:
+          type: boolean
+          description: Consent for personalization
+          example: true
+        essentialsConsent:
+          type: boolean
+          description: Consent for essential cookies
+          example: true
+        globalOptOut:
+          type: boolean
+          description: Global opt-out status
+          example: false
+      required:
+      - jurisdiction
+      - analyticsConsent
+      - marketingConsent
+      - personalizationConsent
+      - essentialsConsent
+      - globalOptOut
+    UserSubmissionVoteInput:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
+    BatchDeleteRequest:
+      type: object
+      properties:
+        types:
+          type: array
+          description: Array of object types to delete (e.g., stories, storycontent, modules, presets)
+          items:
+            type: string
+          example:
+          - stories
+          - storycontent
+          minItems: 1
+      required:
+      - types
+    UserAccountDataResponse:
+      type: object
+      properties:
+        priority:
+          $ref: '#/components/schemas/PriorityResponse'
+        subscription:
+          $ref: '#/components/schemas/SubscriptionResponse'
+        keystore:
+          $ref: '#/components/schemas/GetKeystoreResponse'
+        settings:
+          type:
+          - string
+          - 'null'
+        information:
+          $ref: '#/components/schemas/AccountInformationResponse'
+      required:
+      - priority
+      - subscription
+      - keystore
+      - settings
+      - information
+    DeletionFinishRequest:
+      type: object
+      properties:
+        deletionToken:
+          type: string
+          minLength: 16
+          description: Deletion token provided in the email letter
+      required:
+      - deletionToken
+    SubscriptionTierPerks:
+      type: object
+      properties:
+        maxPriorityActions:
+          type: number
+          description: Amount of max priority actions
+        startPriority:
+          type: number
+          description: Start priority amount
+        contextTokens:
+          type: number
+          description: Amount of granted context tokens
+        unlimitedMaxPriority:
+          type: boolean
+          description: Is max priority unlimited
+        moduleTrainingSteps:
+          type: number
+          description: Amount of module training steps granted every month
+      required:
+      - maxPriorityActions
+      - startPriority
+      - contextTokens
+      - unlimitedMaxPriority
+      - moduleTrainingSteps
+    UserSubmissionInput:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Base64-encoded buffer
+        dataName:
+          type: string
+          maxLength: 256
+        authorName:
+          type: string
+          maxLength: 256
+        authorEmail:
+          type: string
+          maxLength: 256
+        socials:
+          type: string
+          maxLength: 4096
+        mediums:
+          type: string
+          maxLength: 4096
+        event:
+          type: string
+          maxLength: 256
+      required:
+      - data
+      - dataName
+      - authorName
+      - authorEmail
+      - socials
+      - mediums
+      - event
+    LoginRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          minLength: 64
+          maxLength: 64
+          description: Required access key
+        recaptcha:
+          type: string
+          description: ReCAPTCHA response token for the novelai.net domain. This is optional at this moment(but we will make it mandatory)
+      required:
+      - key
+    EmailVerificationStartRequest:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+    ChangeAccessKeyRequest:
+      type: object
+      properties:
+        currentAccessKey:
+          type: string
+          minLength: 64
+          description: Current access key
+        newAccessKey:
+          type: string
+          minLength: 64
+          description: New access key
+        newEmail:
+          type: string
+          description: New email address
+      required:
+      - currentAccessKey
+      - newAccessKey
+    PriorityResponse:
+      type: object
+      properties:
+        maxPriorityActions:
+          type: number
+        nextRefillAt:
+          type: number
+        taskPriority:
+          type: number
+      required:
+      - maxPriorityActions
+      - nextRefillAt
+      - taskPriority
+    OsanoExternalIdResponse:
+      type: object
+      properties:
+        externalOsanoId:
+          type: string
+          description: External ID for Osano
+          example: 4vxu3LyTNTcoQXdCLQMvZF9Spi-vxfmTJVrj8P7hoLM
+      required:
+      - externalOsanoId
+    RecoveryFinishRequest:
+      type: object
+      properties:
+        recoveryToken:
+          type: string
+          minLength: 16
+          description: Recovery token provided in the email letter
+        newAccessKey:
+          type: string
+          minLength: 64
+          maxLength: 64
+          description: New access key
+        deleteContent:
+          type: boolean
+          description: Should the server reset keystore and remove objects of stories and storycontent type?
+          default: false
+      required:
+      - recoveryToken
+      - newAccessKey
+      - deleteContent
+    EmailVerificationRequest:
+      type: object
+      properties:
+        verificationToken:
+          type: string
+          minLength: 64
+          maxLength: 64
+        uiLanguage:
+          type: object
+      required:
+      - verificationToken
+    CreateUserRequest:
+      type: object
+      properties:
+        recaptcha:
+          type: string
+          description: ReCAPTCHA response token for the novelai.net domain
+        key:
+          type: string
+          minLength: 64
+          description: Required access key
+        email:
+          type: string
+          minLength: 64
+          maxLength: 64
+          description: SHA-256 hashed email in hexadecimal
+        emailCleartext:
+          type: string
+          description: Email address (provided as cleartext for email verification, direct service communications, and opt-in marketing)
+        giftkey:
+          type: string
+          description: Subscription gift key, if provided will be automatically activated upon registration
+        locale:
+          type: object
+          enum:
+          - en
+          - jp
+          description: Locale used by the user, e.g. 'en' or 'jp
+        allowMarketingEmails:
+          type: boolean
+          description: If the user opts in to marketing emails
+        isRecaptchaEnterprise:
+          type: boolean
+      required:
+      - recaptcha
+      - key
+      - emailCleartext
+      - allowMarketingEmails
+    UpdateKeystoreRequest:
+      type: object
+      properties:
+        keystore:
+          type: string
+          description: Base64-encoded keystore (or empty string to clear)
+        changeIndex:
+          type: number
+          description: Current change index
+      required:
+      - keystore
+    SuccessfulLoginResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
+      required:
+      - accessToken
+    RecoveryStartRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Target email for account recovery
+        locale:
+          type: object
+          enum:
+          - en
+          - jp
+          description: Locale used by the user, e.g. 'en' or 'jp
+      required:
+      - email
+    UserDataInput:
+      type: object
+      properties:
+        meta:
+          type: string
+          maxLength: 128
+          description: Accompanying non confidential information
+        data:
+          type: string
+          description: Base64-encoded buffer
+        changeIndex:
+          type: number
+          description: Current change index
+      required:
+      - meta
+      - data
+    ChangeMailingListRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Current email address. Not required if user has plaintext email stored
+        marketingConsent:
+          type: boolean
+          description: Marketing email consent state
+        uiLanguage:
+          type: object
+      required:
+      - marketingConsent
+    AccountInformationResponse:
+      type: object
+      properties:
+        emailVerified:
+          type: boolean
+        emailVerificationLetterSent:
+          type: boolean
+        hasPlaintextEmail:
+          type: boolean
+        plaintextEmail:
+          type:
+          - string
+          - 'null'
+        allowMarketingEmails:
+          type: boolean
+        trialActivated:
+          type: boolean
+        trialActionsLeft:
+          type: number
+        trialImagesLeft:
+          type: number
+        accountCreatedAt:
+          type: number
+        banStatus:
+          type: string
+        banMessage:
+          type: string
+      required:
+      - emailVerified
+      - emailVerificationLetterSent
+      - hasPlaintextEmail
+      - plaintextEmail
+      - allowMarketingEmails
+      - trialActivated
+      - trialActionsLeft
+      - trialImagesLeft
+      - accountCreatedAt
+      - banStatus
+      - banMessage
+    UserData:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Object ID
+        meta:
+          type: string
+          maxLength: 128
+          description: Accompanying non confidential information
+        data:
+          type: string
+          description: Base64-encoded buffer
+        lastUpdatedAt:
+          type: number
+          description: UNIX timestamp
+        changeIndex:
+          type: number
+          description: Incremental revision of the object
+        type:
+          type: string
+          minLength: 1
+          maxLength: 16
+      required:
+      - id
+      - meta
+      - data
+      - lastUpdatedAt
+      - changeIndex
+      - type
+    CreatePersistentTokenResponse:
+      type: object
+      properties:
+        token:
+          type:
+          - string
+          - 'null'
+      required:
+      - token
+    CreateUserResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
+      required:
+      - accessToken
+    GoogleSSORequest:
+      type: object
+      properties:
+        idToken:
+          type: string
+          description: Google SSO ID token
+      required:
+      - idToken
+    CreatePersistentTokenInput:
+      type: object
+      properties:
+        overwrite:
+          type: boolean
+          description: Overwrite existing token
+    GiftKeysResponse:
+      type: object
+      properties:
+        giftKeys:
+          type: array
+          items:
+            type: object
+      required:
+      - giftKeys
+    DeletionStartRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Target email for account deletion
+      required:
+      - email
+    SubscriptionResponse:
+      type: object
+      properties:
+        tier:
+          type: number
+          description: Subscription internal tier number, see SubscriptionTiers enum
+        active:
+          type: boolean
+          description: Is subscription active as of the moment of the request
+        expiresAt:
+          type: number
+          description: UNIX timestamp of subscription expiration
+        perks:
+          description: Subscription perks
+          allOf:
+          - $ref: '#/components/schemas/SubscriptionTierPerks'
+        paymentProcessorData:
+          type: object
+          description: Payment processor arbitrary data
+        trainingStepsLeft:
+          description: Amount of available module training steps left
+          allOf:
+          - $ref: '#/components/schemas/SubscriptionAvailableTrainingSteps'
+        isGracePeriod:
+          type: boolean
+          description: Whether the user subscription is in grace period
+      required:
+      - tier
+      - active
+      - expiresAt
+      - perks
+      - paymentProcessorData
+      - trainingStepsLeft
+      - isGracePeriod
+    ObjectsResponse:
+      type: object
+      properties:
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserData'
+      required:
+      - objects
+    GetKeystoreResponse:
+      type: object
+      properties:
+        keystore:
+          type:
+          - string
+          - 'null'
+      required:
+      - keystore
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

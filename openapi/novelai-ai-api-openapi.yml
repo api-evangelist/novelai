@@ -1,0 +1,966 @@
+openapi: 3.1.0
+info:
+  title: NovelAI Primary /ai/ /ai/ /ai/ API
+  description: "\n      The Primary API describes actions that our Frontend makes against the NovelAI backend.\n\n      In general, third-party NovelAI API users should not engage with the Primary API beyond the /ai/ routes.\n\n      Third-party API users developing user-facing applications must ask for a user's Persistent API token to continue.\n      For security reasons it is not recommended to hold a user's credentials in plaintext.\n\n      IMPORTANT: Existing and new API users must read the upcoming generation-specific documentation:\n\n      Image Generation documentation: https://image.novelai.net/docs/index.html\n      Text Generation documentation: https://text.novelai.net/docs/index.html\n    "
+  version: '1.0'
+  contact: {}
+servers:
+- url: https://api.novelai.net
+  description: NovelAI Primary API
+tags:
+- name: /ai/
+paths:
+  /ai/generate:
+    post:
+      operationId: AIController_aiGenerate
+      summary: Generate text. IMPORTANT NOTICE FOR EXISTING API TEXTGEN USERS.
+      description: "Generate text using NovelAI's language models.\rIMPORTANT NOTE FOR EXISTING API USERS: We are deprecating Kayra for subscribed users from this API.\rRead more information on the Text Generation documentation at the start of this page."
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiGenerateRequest'
+      responses:
+        '201':
+          description: The output has been successfully generated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiGenerateResponse'
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '402':
+          description: An active subscription is required to access this endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/
+      security:
+      - bearer: []
+  /ai/generate-prompt:
+    post:
+      operationId: AIController_aiGeneratePrompt
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiGeneratePromptRequest'
+      responses:
+        '201':
+          description: Prompt has been generated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiGeneratePromptResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/
+      security:
+      - bearer: []
+  /ai/generate-stream:
+    post:
+      operationId: AIController_aiGenerateStreamable
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiGenerateRequest'
+      responses:
+        '201':
+          description: The request has been accepted and the output is generating (SSE).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiGenerateStreamableResponse'
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '402':
+          description: An active subscription is required to access this endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/
+      security:
+      - bearer: []
+  /ai/annotate-image:
+    post:
+      operationId: AIController_annotateImage
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiAnnotateImageRequest'
+      responses:
+        '201':
+          description: The request has been accepted and the output is generating (ZIP attachment).
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '402':
+          description: An active subscription is required to access this endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/
+      security:
+      - bearer: []
+  /ai/generate-image:
+    post:
+      operationId: AIController_aiGenerateImage
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiGenerateImageRequest'
+      responses:
+        '201':
+          description: The request has been accepted and the output is generating (SSE / ZIP attachment).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiGenerateImageResponse'
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '402':
+          description: An active subscription is required to access this endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/
+      security:
+      - bearer: []
+  /ai/upscale:
+    post:
+      operationId: AIController_aiUpscaleImage
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiUpscaleImageRequest'
+      responses:
+        '201':
+          description: The request has been accepted and the output is generating (ZIP attachment).
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '402':
+          description: An active subscription is required to access this endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/
+      security:
+      - bearer: []
+  /ai/classify:
+    post:
+      operationId: AIController_classify
+      parameters: []
+      responses:
+        '201':
+          description: The output has been successfully generated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiSequenceClassificationResponse'
+        '400':
+          description: A validation error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '402':
+          description: An active subscription is required to access this endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: A conflict error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/
+      security:
+      - bearer: []
+  /ai/generate-image/suggest-tags:
+    get:
+      operationId: AIController_generateImageTags
+      parameters:
+      - name: model
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: prompt
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AiRequestImageGenerationTagsResponse'
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/
+      security:
+      - bearer: []
+  /ai/generate-voice:
+    get:
+      operationId: AIController_generateVoice
+      summary: Generate voice from text. The GET endpoint has been deprecated, please use the POST endpoint instead.
+      deprecated: true
+      parameters:
+      - name: text
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: seed
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: voice
+        required: true
+        in: query
+        schema:
+          type: number
+      - name: opus
+        required: true
+        in: query
+        schema:
+          type: boolean
+      - name: version
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/
+      security:
+      - bearer: []
+    post:
+      operationId: AIController_generateVoicePost
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AiGenerateVoiceRequest'
+      responses:
+        '201':
+          description: ''
+        '401':
+          description: Access Token is incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: An unknown error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      tags:
+      - /ai/
+      security:
+      - bearer: []
+components:
+  schemas:
+    AiGeneratePromptRequest:
+      type: object
+      properties:
+        model:
+          default: euterpe-v2
+          enum:
+          - 2.7B
+          - 6B-v4
+          - euterpe-v2
+          - genji-python-6b
+          - genji-jp-6b
+          - genji-jp-6b-v2
+          - krake-v2
+          - hypebot
+          - infillmodel
+          - cassandra
+          - sigurd-2.9b-v1
+          - blue
+          - red
+          - green
+          - purple
+          - clio-v1
+          - kayra-v1
+          type: string
+          description: Used text generation model
+        prompt:
+          type: string
+          minLength: 1
+          maxLength: 40000
+          description: Input for the text generation model
+          example: Text generation example.
+        temp:
+          type: number
+          minimum: 0.1
+          maximum: 100
+        tokens_to_generate:
+          type: number
+          minimum: 1
+          maximum: 200
+      required:
+      - model
+      - prompt
+      - temp
+      - tokens_to_generate
+    AiSequenceClassificationResponse:
+      type: object
+      properties:
+        output:
+          description: Output, if defined
+          anyOf:
+          - type: array
+            items:
+              type: object
+              properties:
+                label:
+                  type: string
+                score:
+                  type: number
+          - type: object
+            properties:
+              scores:
+                type: array
+                items:
+                  type: number
+          example:
+          - - label: label
+              score: 0
+          - scores:
+            - - 0.9600785970687866
+              - 0.01683211140334606
+              - 0.014393973164260387
+              - 0.008695312775671482
+        error:
+          type: string
+          description: Error, if defined
+    AiGenerateImageResponse:
+      type: object
+      properties:
+        ptr:
+          type: number
+          description: Incrementing version pointer
+        image:
+          type: string
+          description: Generated image in base64
+        final:
+          type: boolean
+          description: Set to true if the image is final and the generation ended
+        error:
+          type: string
+          description: Error from the generation node, if defined. Usually means the end of stream
+    AiRequestImageGenerationTagsResponse:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/AiRequestImageGenerationTag'
+      required:
+      - tags
+    AiGenerateStreamableResponse:
+      type: object
+      properties:
+        ptr:
+          type: number
+          description: Incrementing token pointer
+        token:
+          type: string
+          description: Generated token
+        final:
+          type: boolean
+          description: Set to true if the token is final and the generation ended
+        error:
+          type: string
+          description: Error from the generation node, if defined. Usually means the end of stream
+    AiGenerateParameters:
+      type: object
+      properties:
+        stop_sequences:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int32
+              minimum: 0
+        bad_words_ids:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int32
+              minimum: 0
+        line_start_ids:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int32
+              minimum: 0
+        use_string:
+          type: boolean
+          description: If false, input and output strings should be Base64-encoded uint16 numbers representing tokens
+          default: false
+        logit_bias:
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              format: int32
+              minimum: 0
+            minItems: 2
+            maxItems: 2
+        logit_bias_exp:
+          type: array
+          items:
+            type: object
+            properties:
+              sequence:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                minItems: 1
+              bias:
+                type: number
+                format: float
+              ensure_sequence_finish:
+                type: boolean
+              generate_once:
+                type: boolean
+            required:
+            - sequence
+            - bias
+          example:
+          - sequence:
+            - 9288
+            - 286
+            - 10690
+            bias: 4
+            ensure_sequence_finish: true
+            generate_once: true
+          - sequence:
+            - 9288
+            - 286
+            bias: 2
+        order:
+          type: array
+          items:
+            type: integer
+            format: int32
+            minimum: 0
+          minItems: 0
+          maxItems: 6
+        repetition_penalty_whitelist:
+          type: array
+          items:
+            type: integer
+            format: int32
+            minimum: 0
+        temperature:
+          type: number
+          minimum: 0.1
+          maximum: 100
+        min_length:
+          type: number
+          minimum: 1
+          maximum: 2048
+        max_length:
+          type: number
+          minimum: 1
+          maximum: 2048
+        do_sample:
+          type: boolean
+        early_stopping:
+          type: boolean
+        num_beams:
+          type: number
+        top_k:
+          type: number
+        top_a:
+          type: number
+        top_p:
+          type: number
+        typical_p:
+          type: number
+        repetition_penalty:
+          type: number
+        pad_token_id:
+          type: number
+        bos_token_id:
+          type: number
+        eos_token_id:
+          type: number
+        length_penalty:
+          type: number
+        no_repeat_ngram_size:
+          type: number
+        encoder_no_repeat_ngram_size:
+          type: number
+        num_return_sequences:
+          type: number
+        force_emotion:
+          type: boolean
+        max_time:
+          type: number
+        use_cache:
+          type: boolean
+        num_beam_groups:
+          type: number
+        diversity_penalty:
+          type: number
+        tail_free_sampling:
+          type: number
+          minimum: 0
+          maximum: 1
+        repetition_penalty_range:
+          type: number
+          minimum: 0
+          maximum: 8192
+        repetition_penalty_slope:
+          type: number
+          minimum: 0
+          maximum: 10
+        get_hidden_states:
+          type: boolean
+        repetition_penalty_frequency:
+          type: number
+          minimum: -2
+          maximum: 2
+        repetition_penalty_presence:
+          type: number
+          minimum: -2
+          maximum: 2
+        next_word:
+          type: boolean
+        prefix:
+          type: string
+        output_nonzero_probs:
+          type: boolean
+        generate_until_sentence:
+          type: boolean
+        num_logprobs:
+          type: number
+          minimum: 0
+          maximum: 30
+        cfg_uc:
+          type: string
+        cfg_scale:
+          type: number
+          minimum: 0
+        cfg_alpha:
+          type: number
+          minimum: 0
+          maximum: 1
+        phrase_rep_pen:
+          type: string
+        top_g:
+          type: number
+          minimum: 0
+          maximum: 65536
+        mirostat_tau:
+          type: number
+          minimum: 0
+        mirostat_lr:
+          type: number
+          minimum: 0
+          maximum: 1
+      required:
+      - min_length
+      - max_length
+      - force_emotion
+    AiGenerateVoiceRequest:
+      type: object
+      properties:
+        text:
+          type: string
+        seed:
+          type: string
+        voice:
+          type: number
+        opus:
+          type: boolean
+        version:
+          type: string
+          enum:
+          - v1
+          - v2
+      required:
+      - text
+      - seed
+      - voice
+      - opus
+      - version
+    AiGenerateResponse:
+      type: object
+      properties:
+        output:
+          type: string
+          description: Output from the text generation model, if defined
+        error:
+          type: string
+          description: Error from the generation node, if defined
+    AiUpscaleImageRequest:
+      type: object
+      properties:
+        image:
+          type: string
+          description: Image in base64
+        width:
+          type: number
+          description: Width of the input image
+        height:
+          type: number
+          description: Height of the input image
+        scale:
+          type: number
+          enum:
+          - 2
+          - 4
+          description: Upscale factor
+          default: 4
+      required:
+      - image
+      - width
+      - height
+      - scale
+    AiGenerateImageRequest:
+      type: object
+      properties:
+        input:
+          type: string
+          minLength: 1
+          maxLength: 40000
+          description: Input for the text generation model
+          example: Image generation example.
+        model:
+          enum:
+          - nai-diffusion
+          - safe-diffusion
+          - nai-diffusion-furry
+          - custom
+          - nai-diffusion-inpainting
+          - nai-diffusion-3-inpainting
+          - safe-diffusion-inpainting
+          - furry-diffusion-inpainting
+          - kandinsky-vanilla
+          - nai-diffusion-2
+          - nai-diffusion-3
+          type: string
+          description: Used image generation model
+        action:
+          enum:
+          - generate
+          - img2img
+          - infill
+          type: string
+          description: Action to use, default is generate
+        parameters:
+          type: object
+          description: Generation parameters (model specific)
+        url:
+          type: string
+          pattern: https:\/\/[0-9a-z\-\_]*\.tenant-novelai\.knative\.(chi\.coreweave\.com|[0-9a-z]+\.coreweave\.cloud)\/.*
+          description: Custom image generation URL
+      required:
+      - input
+      - model
+      - parameters
+    AiGeneratePromptResponse:
+      type: object
+      properties:
+        generated_text:
+          type: string
+      required:
+      - generated_text
+    AiRequestImageGenerationTag:
+      type: object
+      properties:
+        tag:
+          type: string
+        count:
+          type: number
+        confidence:
+          type: number
+      required:
+      - tag
+      - count
+      - confidence
+    AiAnnotateImageRequest:
+      type: object
+      properties:
+        model:
+          enum:
+          - canny
+          - hed
+          - midas
+          - mlsd
+          - openpose
+          - uniformer
+          - fake_scribble
+          type: string
+          description: Model to use
+        parameters:
+          type: object
+          description: Annotation parameters (model specific)
+      required:
+      - model
+      - parameters
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
+    AiGenerateRequest:
+      type: object
+      properties:
+        input:
+          type: string
+          maxLength: 40000
+          description: Input for the text generation model
+          example: Text generation example.
+        model:
+          default: euterpe-v2
+          enum:
+          - 2.7B
+          - 6B-v4
+          - euterpe-v2
+          - genji-python-6b
+          - genji-jp-6b
+          - genji-jp-6b-v2
+          - krake-v2
+          - hypebot
+          - infillmodel
+          - cassandra
+          - sigurd-2.9b-v1
+          - blue
+          - red
+          - green
+          - purple
+          - clio-v1
+          - kayra-v1
+          type: string
+          description: Used text generation model
+        parameters:
+          description: Generation parameters
+          example:
+            use_string: true
+            temperature: 1
+            min_length: 10
+            max_length: 30
+          allOf:
+          - $ref: '#/components/schemas/AiGenerateParameters'
+      required:
+      - input
+      - model
+      - parameters
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http

@@ -1,0 +1,22 @@
+{
+  "provider": "novelai",
+  "sources": [
+    "novelai-ai-api-openapi.yml",
+    "novelai-ai-module-api-openapi.yml",
+    "novelai-default-api-openapi.yml",
+    "novelai-user-api-openapi.yml",
+    "novelai-user-subscription-api-openapi.yml"
+  ],
+  "outputs": [
+    "novelai-ai-api-openapi.yml",
+    "novelai-ai-module-api-openapi.yml",
+    "novelai-default-api-openapi.yml",
+    "novelai-user-api-openapi.yml",
+    "novelai-user-subscription-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

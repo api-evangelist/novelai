@@ -26,7 +26,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/novelai/refs/heads/main/apis.yml
 created: '2024-07-02'
 modified: '2026-04-28'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: novelai:novelai
   name: NovelAI API

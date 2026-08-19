@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NovelAI Primary /ai/ /ai/ /ai/module/ API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/ai/module/",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIModuleController_allModules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/ai/module/all",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "description: \"Access Token is incorrect.\",\n    type: ApiError,\n  })\n\n    status: HttpStatus.PAYMENT_REQUIRED,\n    description: \"An active subscription required to access this endpoint.\",\n    type: ApiError,\n  })\n\n    description: \"A conflict error occured.\",\n    type: ApiError,\n  })\n\n    description: \"The training request has been successfully sent.\",\n    type: AiModuleDto,\n  })\n\n    description: \"A validation error occured.\",\n    type: ApiError,\n  })\n  async trainModule(\n\n\n  ): Promise<AiModule"
+        },
+        {
+          "info": {
+            "name": "AIModuleController_getModule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/ai/module/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIModuleController_deleteModule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.novelai.net/ai/module/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIModuleController_buyTrainingSteps",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/module/buy-training-steps",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

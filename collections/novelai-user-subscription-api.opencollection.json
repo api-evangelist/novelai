@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NovelAI Primary /ai/ /ai/ /user/subscription/ API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/user/subscription/",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SubscriptionController_bindSubscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/subscription/bind",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "SubscriptionController_changeSubscriptionPlan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/user/subscription/change",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

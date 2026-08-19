@@ -1,0 +1,3055 @@
+{
+  "item": [
+    {
+      "id": "67443139-015d-4961-9c24-a4cff87ce41e",
+      "name": "/ai/",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fa9644f4-0d49-4aa7-baae-3834ba954562",
+          "name": "Generate text. IMPORTANT NOTICE FOR EXISTING API TEXTGEN USERS.",
+          "request": {
+            "name": "Generate text. IMPORTANT NOTICE FOR EXISTING API TEXTGEN USERS.",
+            "description": {
+              "content": "Generate text using NovelAI's language models.\rIMPORTANT NOTE FOR EXISTING API USERS: We are deprecating Kayra for subscribed users from this API.\rRead more information on the Text Generation documentation at the start of this page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai",
+                "generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": \"<number>\",\n    \"max_length\": \"<number>\",\n    \"force_emotion\": \"<boolean>\",\n    \"stop_sequences\": [\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          \"<integer>\"\n        ],\n        \"bias\": \"<float>\",\n        \"ensure_sequence_finish\": \"<boolean>\",\n        \"generate_once\": \"<boolean>\"\n      },\n      {\n        \"sequence\": [\n          \"<integer>\"\n        ],\n        \"bias\": \"<float>\",\n        \"ensure_sequence_finish\": \"<boolean>\",\n        \"generate_once\": \"<boolean>\"\n      }\n    ],\n    \"order\": [\n      \"<integer>\",\n      \"<integer>\",\n      \"<integer>\",\n      \"<integer>\",\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"repetition_penalty_whitelist\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"temperature\": \"<number>\",\n    \"do_sample\": \"<boolean>\",\n    \"early_stopping\": \"<boolean>\",\n    \"num_beams\": \"<number>\",\n    \"top_k\": \"<number>\",\n    \"top_a\": \"<number>\",\n    \"top_p\": \"<number>\",\n    \"typical_p\": \"<number>\",\n    \"repetition_penalty\": \"<number>\",\n    \"pad_token_id\": \"<number>\",\n    \"bos_token_id\": \"<number>\",\n    \"eos_token_id\": \"<number>\",\n    \"length_penalty\": \"<number>\",\n    \"no_repeat_ngram_size\": \"<number>\",\n    \"encoder_no_repeat_ngram_size\": \"<number>\",\n    \"num_return_sequences\": \"<number>\",\n    \"max_time\": \"<number>\",\n    \"use_cache\": \"<boolean>\",\n    \"num_beam_groups\": \"<number>\",\n    \"diversity_penalty\": \"<number>\",\n    \"tail_free_sampling\": \"<number>\",\n    \"repetition_penalty_range\": \"<number>\",\n    \"repetition_penalty_slope\": \"<number>\",\n    \"get_hidden_states\": \"<boolean>\",\n    \"repetition_penalty_frequency\": \"<number>\",\n    \"repetition_penalty_presence\": \"<number>\",\n    \"next_word\": \"<boolean>\",\n    \"prefix\": \"<string>\",\n    \"output_nonzero_probs\": \"<boolean>\",\n    \"generate_until_sentence\": \"<boolean>\",\n    \"num_logprobs\": \"<number>\",\n    \"cfg_uc\": \"<string>\",\n    \"cfg_scale\": \"<number>\",\n    \"cfg_alpha\": \"<number>\",\n    \"phrase_rep_pen\": \"<string>\",\n    \"top_g\": \"<number>\",\n    \"mirostat_tau\": \"<number>\",\n    \"mirostat_lr\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a0943344-db57-49d7-a907-df1d5e17f4bb",
+              "name": "The output has been successfully generated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"output\": \"string\",\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d8bf378-c07c-4a67-a9e0-8385856e79be",
+              "name": "A validation error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "043b4f2b-e361-49da-a6da-72380a9b317f",
+              "name": "Access Token is incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a438708d-dac8-4e15-a30b-52bd4b5c37da",
+              "name": "An active subscription is required to access this endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ee3ed59-93a7-4984-89cd-b24d72eaea60",
+              "name": "A conflict error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4e7f172-a28e-461d-bf8a-a7ec2769f9a3",
+              "name": "An unknown error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c271f29-54cf-4597-a1b0-69ee6914a3a8",
+          "name": "AI Controller ai Generate Prompt",
+          "request": {
+            "name": "AI Controller ai Generate Prompt",
+            "description": {},
+            "url": {
+              "path": [
+                "ai",
+                "generate-prompt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"euterpe-v2\",\n  \"prompt\": \"<string>\",\n  \"temp\": \"<number>\",\n  \"tokens_to_generate\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4befeade-2b0a-4c08-8546-6b128393560e",
+              "name": "Prompt has been generated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-prompt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"euterpe-v2\",\n  \"prompt\": \"Text generation example.\",\n  \"temp\": \"<number>\",\n  \"tokens_to_generate\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"generated_text\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89f9b3f6-a44e-43c6-9875-63a4b4a82b6c",
+              "name": "Access Token is incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-prompt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"euterpe-v2\",\n  \"prompt\": \"Text generation example.\",\n  \"temp\": \"<number>\",\n  \"tokens_to_generate\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3a066c2-9251-43a5-9701-e0e36fe6aa97",
+              "name": "An unknown error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-prompt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"euterpe-v2\",\n  \"prompt\": \"Text generation example.\",\n  \"temp\": \"<number>\",\n  \"tokens_to_generate\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1de2143f-8ba0-4213-807f-8005f9d8a10a",
+          "name": "AI Controller ai Generate Streamable",
+          "request": {
+            "name": "AI Controller ai Generate Streamable",
+            "description": {},
+            "url": {
+              "path": [
+                "ai",
+                "generate-stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": \"<number>\",\n    \"max_length\": \"<number>\",\n    \"force_emotion\": \"<boolean>\",\n    \"stop_sequences\": [\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          \"<integer>\"\n        ],\n        \"bias\": \"<float>\",\n        \"ensure_sequence_finish\": \"<boolean>\",\n        \"generate_once\": \"<boolean>\"\n      },\n      {\n        \"sequence\": [\n          \"<integer>\"\n        ],\n        \"bias\": \"<float>\",\n        \"ensure_sequence_finish\": \"<boolean>\",\n        \"generate_once\": \"<boolean>\"\n      }\n    ],\n    \"order\": [\n      \"<integer>\",\n      \"<integer>\",\n      \"<integer>\",\n      \"<integer>\",\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"repetition_penalty_whitelist\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"temperature\": \"<number>\",\n    \"do_sample\": \"<boolean>\",\n    \"early_stopping\": \"<boolean>\",\n    \"num_beams\": \"<number>\",\n    \"top_k\": \"<number>\",\n    \"top_a\": \"<number>\",\n    \"top_p\": \"<number>\",\n    \"typical_p\": \"<number>\",\n    \"repetition_penalty\": \"<number>\",\n    \"pad_token_id\": \"<number>\",\n    \"bos_token_id\": \"<number>\",\n    \"eos_token_id\": \"<number>\",\n    \"length_penalty\": \"<number>\",\n    \"no_repeat_ngram_size\": \"<number>\",\n    \"encoder_no_repeat_ngram_size\": \"<number>\",\n    \"num_return_sequences\": \"<number>\",\n    \"max_time\": \"<number>\",\n    \"use_cache\": \"<boolean>\",\n    \"num_beam_groups\": \"<number>\",\n    \"diversity_penalty\": \"<number>\",\n    \"tail_free_sampling\": \"<number>\",\n    \"repetition_penalty_range\": \"<number>\",\n    \"repetition_penalty_slope\": \"<number>\",\n    \"get_hidden_states\": \"<boolean>\",\n    \"repetition_penalty_frequency\": \"<number>\",\n    \"repetition_penalty_presence\": \"<number>\",\n    \"next_word\": \"<boolean>\",\n    \"prefix\": \"<string>\",\n    \"output_nonzero_probs\": \"<boolean>\",\n    \"generate_until_sentence\": \"<boolean>\",\n    \"num_logprobs\": \"<number>\",\n    \"cfg_uc\": \"<string>\",\n    \"cfg_scale\": \"<number>\",\n    \"cfg_alpha\": \"<number>\",\n    \"phrase_rep_pen\": \"<string>\",\n    \"top_g\": \"<number>\",\n    \"mirostat_tau\": \"<number>\",\n    \"mirostat_lr\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9248fa4b-4628-4609-b06e-5e539b334b60",
+              "name": "The request has been accepted and the output is generating (SSE).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ptr\": 9905.762890539369,\n  \"token\": \"string\",\n  \"final\": false,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d477fb2-0d50-4e9e-a23c-0c7b67dc183a",
+              "name": "A validation error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "767b75da-e25e-4094-a153-532e9936d8f1",
+              "name": "Access Token is incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fed649a7-1ae3-41bc-a5e2-9df33c8e6850",
+              "name": "An active subscription is required to access this endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a84652c-8067-4a3f-b5b2-8f9df71a8e68",
+              "name": "A conflict error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccb36489-e612-4f34-bac2-755826540be0",
+              "name": "An unknown error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Text generation example.\",\n  \"model\": \"euterpe-v2\",\n  \"parameters\": {\n    \"min_length\": 720.1078254216279,\n    \"max_length\": 1696.5104261079246,\n    \"force_emotion\": true,\n    \"stop_sequences\": [\n      [\n        3138,\n        5760\n      ],\n      [\n        2209,\n        5412\n      ]\n    ],\n    \"bad_words_ids\": [\n      [\n        5645,\n        4496\n      ],\n      [\n        423,\n        7570\n      ]\n    ],\n    \"line_start_ids\": [\n      [\n        1562,\n        2107\n      ],\n      [\n        1441,\n        1074\n      ]\n    ],\n    \"use_string\": false,\n    \"logit_bias\": [\n      [\n        4891,\n        13\n      ],\n      [\n        8465,\n        5801\n      ]\n    ],\n    \"logit_bias_exp\": [\n      {\n        \"sequence\": [\n          3405\n        ],\n        \"bias\": 7402.175142160659,\n        \"ensure_sequence_finish\": false,\n        \"generate_once\": false\n      },\n      {\n        \"sequence\": [\n          2291\n        ],\n        \"bias\": 1958.6591370700646,\n        \"ensure_sequence_finish\": true,\n        \"generate_once\": true\n      }\n    ],\n    \"order\": [\n      5427,\n      4924,\n      9032,\n      2685,\n      579,\n      23\n    ],\n    \"repetition_penalty_whitelist\": [\n      4104,\n      9319\n    ],\n    \"temperature\": 18.654522738482353,\n    \"do_sample\": true,\n    \"early_stopping\": true,\n    \"num_beams\": 5254.919029277898,\n    \"top_k\": 349.04802485082433,\n    \"top_a\": 6150.528877846765,\n    \"top_p\": 1599.7864308315802,\n    \"typical_p\": 1750.5126096819968,\n    \"repetition_penalty\": 3054.156924529752,\n    \"pad_token_id\": 33.16557008867793,\n    \"bos_token_id\": 685.4049649987682,\n    \"eos_token_id\": 63.30494185410651,\n    \"length_penalty\": 9233.984624785928,\n    \"no_repeat_ngram_size\": 104.97644288926521,\n    \"encoder_no_repeat_ngram_size\": 8258.573665510112,\n    \"num_return_sequences\": 7544.552986186299,\n    \"max_time\": 4665.0411724455835,\n    \"use_cache\": false,\n    \"num_beam_groups\": 144.514096173477,\n    \"diversity_penalty\": 6247.636696418272,\n    \"tail_free_sampling\": 0.9060698756835132,\n    \"repetition_penalty_range\": 4688.596297509111,\n    \"repetition_penalty_slope\": 0.913082234412248,\n    \"get_hidden_states\": true,\n    \"repetition_penalty_frequency\": -1.9100994656137793,\n    \"repetition_penalty_presence\": 0.9934260666646,\n    \"next_word\": false,\n    \"prefix\": \"string\",\n    \"output_nonzero_probs\": false,\n    \"generate_until_sentence\": false,\n    \"num_logprobs\": 15.616371382359278,\n    \"cfg_uc\": \"string\",\n    \"cfg_scale\": 8511.225162201166,\n    \"cfg_alpha\": 0.2118974372251885,\n    \"phrase_rep_pen\": \"string\",\n    \"top_g\": 16468.377620917774,\n    \"mirostat_tau\": 1159.5803913522052,\n    \"mirostat_lr\": 0.09125711929758429\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19ba9044-3b92-4ae9-880c-3d941cf41361",
+          "name": "AI Controller annotate Image",
+          "request": {
+            "name": "AI Controller annotate Image",
+            "description": {},
+            "url": {
+              "path": [
+                "ai",
+                "annotate-image"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0fe20bb1-ea60-478f-a51b-75ac3871da7d",
+              "name": "The request has been accepted and the output is generating (ZIP attachment).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "annotate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "12e81d7b-bb30-48aa-9b89-018b39af5a05",
+              "name": "A validation error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "annotate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "163e2202-f726-4dfd-a3d2-c99fa755df2f",
+              "name": "Access Token is incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "annotate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fbb0dfc-09b9-4f04-b59f-95290a4bcf64",
+              "name": "An active subscription is required to access this endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "annotate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f43def2d-eb37-44a7-a56f-c20d33f29eb9",
+              "name": "A conflict error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "annotate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d7b0a38-4581-4de6-87fa-e8d6566d6f93",
+              "name": "An unknown error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "annotate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c8eba76-93dc-41a2-962b-ae196b9a63f5",
+          "name": "AI Controller ai Generate Image",
+          "request": {
+            "name": "AI Controller ai Generate Image",
+            "description": {},
+            "url": {
+              "path": [
+                "ai",
+                "generate-image"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"action\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77b423e1-4085-4a87-a96d-d3d9b7920db0",
+              "name": "The request has been accepted and the output is generating (SSE / ZIP attachment).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Image generation example.\",\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"action\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ptr\": 9646.050737471578,\n  \"image\": \"string\",\n  \"final\": false,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae2a917c-aef6-4089-812e-39278a69ba50",
+              "name": "A validation error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Image generation example.\",\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"action\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9c0b5db-6f7e-42bf-9055-62a5390cba6b",
+              "name": "Access Token is incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Image generation example.\",\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"action\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9017452f-333a-4907-9b7e-dda9c8dea6d3",
+              "name": "An active subscription is required to access this endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Image generation example.\",\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"action\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bad27f58-d8e6-4d4c-b227-0caa83e3abc4",
+              "name": "A conflict error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Image generation example.\",\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"action\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f693be26-5486-49f6-b961-221cc2135a53",
+              "name": "An unknown error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"Image generation example.\",\n  \"model\": \"<string>\",\n  \"parameters\": \"<object>\",\n  \"action\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62dd2a7c-7cde-4759-963f-62b37514177e",
+          "name": "AI Controller ai Upscale Image",
+          "request": {
+            "name": "AI Controller ai Upscale Image",
+            "description": {},
+            "url": {
+              "path": [
+                "ai",
+                "upscale"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"image\": \"<string>\",\n  \"width\": \"<number>\",\n  \"height\": \"<number>\",\n  \"scale\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f0c4548-bc52-41f3-aefe-c1bdc682dfb9",
+              "name": "The request has been accepted and the output is generating (ZIP attachment).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "upscale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image\": \"<string>\",\n  \"width\": \"<number>\",\n  \"height\": \"<number>\",\n  \"scale\": 4\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "da87c2e9-2dd1-429b-9ff8-6b8f2d3f4aa0",
+              "name": "A validation error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "upscale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image\": \"<string>\",\n  \"width\": \"<number>\",\n  \"height\": \"<number>\",\n  \"scale\": 4\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bd97937-1f11-41e4-b531-72faaac962ca",
+              "name": "Access Token is incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "upscale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image\": \"<string>\",\n  \"width\": \"<number>\",\n  \"height\": \"<number>\",\n  \"scale\": 4\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4f6fcf6-e4b3-4c8e-acf8-ff13888911cc",
+              "name": "An active subscription is required to access this endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "upscale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image\": \"<string>\",\n  \"width\": \"<number>\",\n  \"height\": \"<number>\",\n  \"scale\": 4\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cd7f821-437c-48c6-9bd4-7953110f8497",
+              "name": "A conflict error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "upscale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image\": \"<string>\",\n  \"width\": \"<number>\",\n  \"height\": \"<number>\",\n  \"scale\": 4\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bcfdf50-168c-4c66-86db-b9d067add733",
+              "name": "An unknown error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "upscale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image\": \"<string>\",\n  \"width\": \"<number>\",\n  \"height\": \"<number>\",\n  \"scale\": 4\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12429385-c1fb-44bd-9a8b-3dc26a7a00e2",
+          "name": "AI Controller classify",
+          "request": {
+            "name": "AI Controller classify",
+            "description": {},
+            "url": {
+              "path": [
+                "ai",
+                "classify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e0dbc2eb-c6fb-49a3-a5cf-1ea41fa5a08e",
+              "name": "The output has been successfully generated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"output\": [\n    {\n      \"label\": \"string\",\n      \"score\": 9247.170225473381\n    },\n    {\n      \"label\": \"string\",\n      \"score\": 2704.0486095889883\n    }\n  ],\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "faca4afe-3105-4634-981e-e3f2123aedc4",
+              "name": "A validation error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c3b28ce-af23-4c88-b125-de56b354b298",
+              "name": "Access Token is incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9d1c9fb-8e1b-4485-afa6-07157d15e351",
+              "name": "An active subscription is required to access this endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12b73479-c05a-4c2d-b2d6-f1b3df5c265e",
+              "name": "A conflict error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c9804d3-bce2-4d67-b448-e2dc261387b4",
+              "name": "An unknown error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8553536d-6c4e-4a2f-a83d-4648cb241af5",
+          "name": "AI Controller generate Image Tags",
+          "request": {
+            "name": "AI Controller generate Image Tags",
+            "description": {},
+            "url": {
+              "path": [
+                "ai",
+                "generate-image",
+                "suggest-tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "94b5f443-ecb3-4031-bb77-3141bc6ce16d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-image",
+                    "suggest-tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tags\": [\n    {\n      \"tag\": \"string\",\n      \"count\": 7276.402482673135,\n      \"confidence\": 2648.361915936481\n    },\n    {\n      \"tag\": \"string\",\n      \"count\": 478.82558668309593,\n      \"confidence\": 9378.648426760808\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65914330-9669-47e5-8ce1-67e393534d1e",
+              "name": "Access Token is incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-image",
+                    "suggest-tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e845fa3d-8562-4800-a48b-1393d9c91c7d",
+              "name": "An unknown error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-image",
+                    "suggest-tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb67fda5-cc9c-405e-aa1a-bd0cf1161847",
+          "name": "Generate voice from text. The GET endpoint has been deprecated, please use the POST endpoint instead.",
+          "request": {
+            "name": "Generate voice from text. The GET endpoint has been deprecated, please use the POST endpoint instead.",
+            "description": {},
+            "url": {
+              "path": [
+                "ai",
+                "generate-voice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "seed",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "voice",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "opus",
+                  "value": "<boolean>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9cd2f0c4-bec6-4058-96fd-ca7a33cd8d52",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "seed",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "voice",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "opus",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f955d584-1741-4102-8bde-5f1823c65113",
+              "name": "Access Token is incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "seed",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "voice",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "opus",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99a3b31e-c4da-4a09-b4da-2b78ae6fa799",
+              "name": "An unknown error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "seed",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "voice",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "opus",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef90d0d7-2981-45d5-8d64-b36848ca1a11",
+          "name": "AI Controller generate Voice Post",
+          "request": {
+            "name": "AI Controller generate Voice Post",
+            "description": {},
+            "url": {
+              "path": [
+                "ai",
+                "generate-voice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"seed\": \"<string>\",\n  \"voice\": \"<number>\",\n  \"opus\": \"<boolean>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9cbac42b-fca0-43c9-9d52-470b08a462ae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"seed\": \"<string>\",\n  \"voice\": \"<number>\",\n  \"opus\": \"<boolean>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb85d517-58df-4ac7-a9d8-a931faee5594",
+              "name": "Access Token is incorrect.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"seed\": \"<string>\",\n  \"voice\": \"<number>\",\n  \"opus\": \"<boolean>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "652f6f9a-0fe3-4e17-a951-ede3e7fcfa33",
+              "name": "An unknown error occured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "generate-voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"seed\": \"<string>\",\n  \"voice\": \"<number>\",\n  \"opus\": \"<boolean>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7234.520674912278,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.novelai.net",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "23420c7a-a000-47b8-b7b4-15f7fa512c07",
+    "name": "NovelAI Primary /ai/ /ai/ /ai/ API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n      The Primary API describes actions that our Frontend makes against the NovelAI backend.\n\n      In general, third-party NovelAI API users should not engage with the Primary API beyond the /ai/ routes.\n\n      Third-party API users developing user-facing applications must ask for a user's Persistent API token to continue.\n      For security reasons it is not recommended to hold a user's credentials in plaintext.\n\n      IMPORTANT: Existing and new API users must read the upcoming generation-specific documentation:\n\n      Image Generation documentation: https://image.novelai.net/docs/index.html\n      Text Generation documentation: https://text.novelai.net/docs/index.html\n    ",
+      "type": "text/plain"
+    }
+  }
+}

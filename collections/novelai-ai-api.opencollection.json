@@ -1,0 +1,227 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NovelAI Primary /ai/ /ai/ /ai/ API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/ai/",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate text. IMPORTANT NOTICE FOR EXISTING API TEXTGEN USERS.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/generate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate text using NovelAI's language models.\rIMPORTANT NOTE FOR EXISTING API USERS: We are deprecating Kayra for subscribed users from this API.\rRead more information on the Text Generation documentation at the start of this page."
+        },
+        {
+          "info": {
+            "name": "AIController_aiGeneratePrompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/generate-prompt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_aiGenerateStreamable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/generate-stream",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_annotateImage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/annotate-image",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_aiGenerateImage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/generate-image",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_aiUpscaleImage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/upscale",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_classify",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/classify",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AIController_generateImageTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/ai/generate-image/suggest-tags",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Generate voice from text. The GET endpoint has been deprecated, please use the POST endpoint instead.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.novelai.net/ai/generate-voice",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "seed",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "voice",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "opus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate voice from text. The GET endpoint has been deprecated, please use the POST endpoint instead."
+        },
+        {
+          "info": {
+            "name": "AIController_generateVoicePost",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.novelai.net/ai/generate-voice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

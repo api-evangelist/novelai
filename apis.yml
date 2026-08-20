@@ -19,6 +19,11 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/novelai.png
 tags:
+  - Artificial Intelligence
+  - Image-Generation
+  - LLM
+  - Storytelling
+tags_raw:
   - AI
   - Image Generation
   - LLM
@@ -34,6 +39,10 @@ apis:
     NovelAI API provides programmatic access to AI image generation and text generation capabilities.
   humanURL: https://api.novelai.net/docs/
   tags:
+  - Artificial Intelligence
+  - Image-Generation
+  - LLM
+  tags_raw:
   - AI
   - Image Generation
   - LLM
@@ -45,6 +54,8 @@ apis:
   description: The /ai/ API from NovelAI — 9 operation(s) for /ai/.
   humanURL: https://api.novelai.net/docs/
   tags:
+  - Artificial Intelligence
+  tags_raw:
   - /ai/
   properties:
   - type: OpenAPI
@@ -53,7 +64,8 @@ apis:
   name: NovelAI /ai/module/ API
   description: The /ai/module/ API from NovelAI — 3 operation(s) for /ai/module/.
   humanURL: https://api.novelai.net/docs/
-  tags:
+  tags: []
+  tags_raw:
   - /ai/module/
   properties:
   - type: OpenAPI
@@ -62,7 +74,8 @@ apis:
   name: NovelAI / API
   description: The / API from NovelAI — 1 operation(s) for /.
   humanURL: https://api.novelai.net/docs/
-  tags:
+  tags: []
+  tags_raw:
   - /
   properties:
   - type: OpenAPI
@@ -72,6 +85,8 @@ apis:
   description: The /user/ API from NovelAI — 28 operation(s) for /user/.
   humanURL: https://api.novelai.net/docs/
   tags:
+  - User
+  tags_raw:
   - /user/
   properties:
   - type: OpenAPI
@@ -81,6 +96,8 @@ apis:
   description: The /user/subscription/ API from NovelAI — 2 operation(s) for /user/subscription/.
   humanURL: https://api.novelai.net/docs/
   tags:
+  - User Subscription
+  tags_raw:
   - /user/subscription/
   properties:
   - type: OpenAPI

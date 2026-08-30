@@ -64,8 +64,7 @@ apis:
   name: NovelAI /ai/ API
   description: The /ai/ API from NovelAI — 9 operation(s) for /ai/.
   humanURL: https://api.novelai.net/docs/
-  tags:
-  - Artificial Intelligence
+  tags: []
   tags_raw:
   - /ai/
   properties:
@@ -95,8 +94,7 @@ apis:
   name: NovelAI /user/ API
   description: The /user/ API from NovelAI — 28 operation(s) for /user/.
   humanURL: https://api.novelai.net/docs/
-  tags:
-  - User
+  tags: []
   tags_raw:
   - /user/
   properties:
@@ -106,8 +104,7 @@ apis:
   name: NovelAI /user/subscription/ API
   description: The /user/subscription/ API from NovelAI — 2 operation(s) for /user/subscription/.
   humanURL: https://api.novelai.net/docs/
-  tags:
-  - User Subscription
+  tags: []
   tags_raw:
   - /user/subscription/
   properties:

@@ -1,20 +1,20 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: NovelAI Primary /ai/ /ai/ /ai/ API
-  description: "\n      The Primary API describes actions that our Frontend makes against the NovelAI backend.\n\n      In general, third-party NovelAI API users should not engage with the Primary API beyond the /ai/ routes.\n\n      Third-party API users developing user-facing applications must ask for a user's Persistent API token to continue.\n      For security reasons it is not recommended to hold a user's credentials in plaintext.\n\n      IMPORTANT: Existing and new API users must read the upcoming generation-specific documentation:\n\n      Image Generation documentation: https://image.novelai.net/docs/index.html\n      Text Generation documentation: https://text.novelai.net/docs/index.html\n    "
+  title: NovelAI Primary /ai/ API
+  description: The Primary API describes actions that our Frontend makes against the NovelAI backend.
   version: '1.0'
   contact: {}
 servers:
 - url: https://api.novelai.net
   description: NovelAI Primary API
 tags:
-- name: /ai/
+- name: AI
 paths:
   /ai/generate:
     post:
       operationId: AIController_aiGenerate
-      summary: Generate text. IMPORTANT NOTICE FOR EXISTING API TEXTGEN USERS.
-      description: "Generate text using NovelAI's language models.\rIMPORTANT NOTE FOR EXISTING API USERS: We are deprecating Kayra for subscribed users from this API.\rRead more information on the Text Generation documentation at the start of this page."
+      summary: Generate text. IMPORTANT NOTICE FOR EXISTING API TEXTGEN USERS
+      description: 'Generate text using NovelAI''s language models.IMPORTANT NOTE FOR EXISTING API USERS: We are deprecating Kayra for subscribed users from this API.Read more information on the Text Generation documentation at the start of this page.'
       parameters: []
       requestBody:
         required: true
@@ -60,7 +60,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /ai/
+      - AI
       security:
       - bearer: []
   /ai/generate-prompt:
@@ -93,9 +93,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /ai/
+      - AI
       security:
       - bearer: []
+      summary: AI controller ai generate prompt
+      x-summary-source: derived
   /ai/generate-stream:
     post:
       operationId: AIController_aiGenerateStreamable
@@ -144,9 +146,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /ai/
+      - AI
       security:
       - bearer: []
+      summary: AI controller ai generate streamable
+      x-summary-source: derived
   /ai/annotate-image:
     post:
       operationId: AIController_annotateImage
@@ -191,9 +195,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /ai/
+      - AI
       security:
       - bearer: []
+      summary: AI controller annotate image
+      x-summary-source: derived
   /ai/generate-image:
     post:
       operationId: AIController_aiGenerateImage
@@ -242,9 +248,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /ai/
+      - AI
       security:
       - bearer: []
+      summary: AI controller ai generate image
+      x-summary-source: derived
   /ai/upscale:
     post:
       operationId: AIController_aiUpscaleImage
@@ -289,9 +297,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /ai/
+      - AI
       security:
       - bearer: []
+      summary: AI controller ai upscale image
+      x-summary-source: derived
   /ai/classify:
     post:
       operationId: AIController_classify
@@ -334,9 +344,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /ai/
+      - AI
       security:
       - bearer: []
+      summary: AI controller classify
+      x-summary-source: derived
   /ai/generate-image/suggest-tags:
     get:
       operationId: AIController_generateImageTags
@@ -371,13 +383,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /ai/
+      - AI
       security:
       - bearer: []
+      summary: AI controller generate image tags
+      x-summary-source: derived
   /ai/generate-voice:
     get:
       operationId: AIController_generateVoice
-      summary: Generate voice from text. The GET endpoint has been deprecated, please use the POST endpoint instead.
+      summary: Generate voice from text.
       deprecated: true
       parameters:
       - name: text
@@ -421,7 +435,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /ai/
+      - AI
       security:
       - bearer: []
     post:
@@ -449,11 +463,112 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /ai/
+      - AI
       security:
       - bearer: []
+      summary: AI controller generate voice post
+      x-summary-source: derived
 components:
   schemas:
+    AiSequenceClassificationResponse:
+      type: object
+      properties:
+        output:
+          description: Output, if defined
+          anyOf:
+          - type: array
+            items:
+              type: object
+              properties:
+                label:
+                  type: string
+                score:
+                  type: number
+          - type: object
+            properties:
+              scores:
+                type: array
+                items:
+                  type: number
+          example:
+          - - label: label
+              score: 0
+          - scores:
+            - - 0.9600785970687866
+              - 0.01683211140334606
+              - 0.014393973164260387
+              - 0.008695312775671482
+        error:
+          type: string
+          description: Error, if defined
+    AiGenerateResponse:
+      type: object
+      properties:
+        output:
+          type: string
+          description: Output from the text generation model, if defined
+        error:
+          type: string
+          description: Error from the generation node, if defined
+    AiGenerateRequest:
+      type: object
+      properties:
+        input:
+          type: string
+          maxLength: 40000
+          description: Input for the text generation model
+          example: Text generation example.
+        model:
+          default: euterpe-v2
+          enum:
+          - 2.7B
+          - 6B-v4
+          - euterpe-v2
+          - genji-python-6b
+          - genji-jp-6b
+          - genji-jp-6b-v2
+          - krake-v2
+          - hypebot
+          - infillmodel
+          - cassandra
+          - sigurd-2.9b-v1
+          - blue
+          - red
+          - green
+          - purple
+          - clio-v1
+          - kayra-v1
+          type: string
+          description: Used text generation model
+        parameters:
+          description: Generation parameters
+          example:
+            use_string: true
+            temperature: 1
+            min_length: 10
+            max_length: 30
+          allOf:
+          - $ref: '#/components/schemas/AiGenerateParameters'
+      required:
+      - input
+      - model
+      - parameters
+    AiGeneratePromptResponse:
+      type: object
+      properties:
+        generated_text:
+          type: string
+      required:
+      - generated_text
+    AiRequestImageGenerationTagsResponse:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/AiRequestImageGenerationTag'
+      required:
+      - tags
     AiGeneratePromptRequest:
       type: object
       properties:
@@ -498,61 +613,26 @@ components:
       - prompt
       - temp
       - tokens_to_generate
-    AiSequenceClassificationResponse:
+    AiAnnotateImageRequest:
       type: object
       properties:
-        output:
-          description: Output, if defined
-          anyOf:
-          - type: array
-            items:
-              type: object
-              properties:
-                label:
-                  type: string
-                score:
-                  type: number
-          - type: object
-            properties:
-              scores:
-                type: array
-                items:
-                  type: number
-          example:
-          - - label: label
-              score: 0
-          - scores:
-            - - 0.9600785970687866
-              - 0.01683211140334606
-              - 0.014393973164260387
-              - 0.008695312775671482
-        error:
+        model:
+          enum:
+          - canny
+          - hed
+          - midas
+          - mlsd
+          - openpose
+          - uniformer
+          - fake_scribble
           type: string
-          description: Error, if defined
-    AiGenerateImageResponse:
-      type: object
-      properties:
-        ptr:
-          type: number
-          description: Incrementing version pointer
-        image:
-          type: string
-          description: Generated image in base64
-        final:
-          type: boolean
-          description: Set to true if the image is final and the generation ended
-        error:
-          type: string
-          description: Error from the generation node, if defined. Usually means the end of stream
-    AiRequestImageGenerationTagsResponse:
-      type: object
-      properties:
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/AiRequestImageGenerationTag'
+          description: Model to use
+        parameters:
+          type: object
+          description: Annotation parameters (model specific)
       required:
-      - tags
+      - model
+      - parameters
     AiGenerateStreamableResponse:
       type: object
       properties:
@@ -791,39 +871,21 @@ components:
       - voice
       - opus
       - version
-    AiGenerateResponse:
+    AiGenerateImageResponse:
       type: object
       properties:
-        output:
-          type: string
-          description: Output from the text generation model, if defined
-        error:
-          type: string
-          description: Error from the generation node, if defined
-    AiUpscaleImageRequest:
-      type: object
-      properties:
+        ptr:
+          type: number
+          description: Incrementing version pointer
         image:
           type: string
-          description: Image in base64
-        width:
-          type: number
-          description: Width of the input image
-        height:
-          type: number
-          description: Height of the input image
-        scale:
-          type: number
-          enum:
-          - 2
-          - 4
-          description: Upscale factor
-          default: 4
-      required:
-      - image
-      - width
-      - height
-      - scale
+          description: Generated image in base64
+        final:
+          type: boolean
+          description: Set to true if the image is final and the generation ended
+        error:
+          type: string
+          description: Error from the generation node, if defined. Usually means the end of stream
     AiGenerateImageRequest:
       type: object
       properties:
@@ -866,13 +928,30 @@ components:
       - input
       - model
       - parameters
-    AiGeneratePromptResponse:
+    AiUpscaleImageRequest:
       type: object
       properties:
-        generated_text:
+        image:
           type: string
+          description: Image in base64
+        width:
+          type: number
+          description: Width of the input image
+        height:
+          type: number
+          description: Height of the input image
+        scale:
+          type: number
+          enum:
+          - 2
+          - 4
+          description: Upscale factor
+          default: 4
       required:
-      - generated_text
+      - image
+      - width
+      - height
+      - scale
     AiRequestImageGenerationTag:
       type: object
       properties:
@@ -886,26 +965,6 @@ components:
       - tag
       - count
       - confidence
-    AiAnnotateImageRequest:
-      type: object
-      properties:
-        model:
-          enum:
-          - canny
-          - hed
-          - midas
-          - mlsd
-          - openpose
-          - uniformer
-          - fake_scribble
-          type: string
-          description: Model to use
-        parameters:
-          type: object
-          description: Annotation parameters (model specific)
-      required:
-      - model
-      - parameters
     ApiError:
       type: object
       properties:
@@ -916,49 +975,6 @@ components:
       required:
       - statusCode
       - message
-    AiGenerateRequest:
-      type: object
-      properties:
-        input:
-          type: string
-          maxLength: 40000
-          description: Input for the text generation model
-          example: Text generation example.
-        model:
-          default: euterpe-v2
-          enum:
-          - 2.7B
-          - 6B-v4
-          - euterpe-v2
-          - genji-python-6b
-          - genji-jp-6b
-          - genji-jp-6b-v2
-          - krake-v2
-          - hypebot
-          - infillmodel
-          - cassandra
-          - sigurd-2.9b-v1
-          - blue
-          - red
-          - green
-          - purple
-          - clio-v1
-          - kayra-v1
-          type: string
-          description: Used text generation model
-        parameters:
-          description: Generation parameters
-          example:
-            use_string: true
-            temperature: 1
-            min_length: 10
-            max_length: 30
-          allOf:
-          - $ref: '#/components/schemas/AiGenerateParameters'
-      required:
-      - input
-      - model
-      - parameters
   securitySchemes:
     bearer:
       scheme: bearer

@@ -1,22 +1,33 @@
 {
   "provider": "novelai",
   "sources": [
-    "novelai-ai-api-openapi.yml",
-    "novelai-ai-module-api-openapi.yml",
-    "novelai-default-api-openapi.yml",
-    "novelai-user-api-openapi.yml",
-    "novelai-user-subscription-api-openapi.yml"
+    "_original/novelai-openapi.yml"
   ],
   "outputs": [
+    "novelai-default-api-openapi.yml",
     "novelai-ai-api-openapi.yml",
     "novelai-ai-module-api-openapi.yml",
-    "novelai-default-api-openapi.yml",
     "novelai-user-api-openapi.yml",
     "novelai-user-subscription-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "novelai-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "novelai-openapi.yml: declared missing tag: /",
+    "novelai-openapi.yml: declared missing tag: /ai/",
+    "novelai-openapi.yml: declared missing tag: /ai/module/",
+    "novelai-openapi.yml: declared missing tag: /user/",
+    "novelai-openapi.yml: declared missing tag: /user/subscription/",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "novelai-ai-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "novelai-ai-module-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "novelai-default-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "novelai-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "novelai-user-subscription-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

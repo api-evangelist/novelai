@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: NovelAI Primary /ai/ /ai/ /user/ API
-  description: "\n      The Primary API describes actions that our Frontend makes against the NovelAI backend.\n\n      In general, third-party NovelAI API users should not engage with the Primary API beyond the /ai/ routes.\n\n      Third-party API users developing user-facing applications must ask for a user's Persistent API token to continue.\n      For security reasons it is not recommended to hold a user's credentials in plaintext.\n\n      IMPORTANT: Existing and new API users must read the upcoming generation-specific documentation:\n\n      Image Generation documentation: https://image.novelai.net/docs/index.html\n      Text Generation documentation: https://text.novelai.net/docs/index.html\n    "
+  title: NovelAI Primary /user/ API
+  description: The Primary API describes actions that our Frontend makes against the NovelAI backend.
   version: '1.0'
   contact: {}
 servers:
 - url: https://api.novelai.net
   description: NovelAI Primary API
 tags:
-- name: /user/
+- name: User
 paths:
   /user/register:
     post:
@@ -46,7 +46,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
+      summary: User controller create user
+      x-summary-source: derived
   /user/login:
     post:
       operationId: UserController_loginUser
@@ -83,7 +85,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
+      summary: User controller login user
+      x-summary-source: derived
   /user/change-access-key:
     post:
       operationId: UserController_changeAccessKey
@@ -126,9 +130,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller change access key
+      x-summary-source: derived
   /user/sso/google:
     post:
       operationId: UserController_ssoGoogle
@@ -153,7 +159,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
+      summary: User controller sso google
+      x-summary-source: derived
   /user/change-mailing-list-consent:
     patch:
       operationId: UserController_changeMailingListConsent
@@ -194,9 +202,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller change mailing list consent
+      x-summary-source: derived
   /user/resend-email-verification:
     post:
       operationId: UserController_requestEmailVerification
@@ -235,7 +245,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
+      summary: User controller request email verification
+      x-summary-source: derived
   /user/verify-email:
     post:
       operationId: UserController_verifyEmail
@@ -268,7 +280,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
+      summary: User controller verify email
+      x-summary-source: derived
   /user/information:
     get:
       operationId: UserController_getAccountInformation
@@ -293,9 +307,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get account information
+      x-summary-source: derived
   /user/osano-external-id:
     get:
       operationId: UserController_getOsanoExternalId
@@ -320,9 +336,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get osano external id
+      x-summary-source: derived
   /user/consent:
     put:
       operationId: UserController_upsertUserConsent
@@ -355,9 +373,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller upsert user consent
+      x-summary-source: derived
   /user/deletion/request:
     post:
       operationId: UserController_requestAccountDeletion
@@ -390,9 +410,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller request account deletion
+      x-summary-source: derived
   /user/deletion/delete:
     post:
       operationId: UserController_deleteAccount
@@ -425,7 +447,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
+      summary: User controller delete account
+      x-summary-source: derived
   /user/recovery/request:
     post:
       operationId: UserController_requestAccountRecovery
@@ -452,7 +476,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
+      summary: User controller request account recovery
+      x-summary-source: derived
   /user/recovery/recover:
     post:
       operationId: UserController_recoverAccount
@@ -495,7 +521,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
+      summary: User controller recover account
+      x-summary-source: derived
   /user/delete:
     post:
       operationId: UserController_deleteAccountUnchecked
@@ -522,9 +550,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller delete account unchecked
+      x-summary-source: derived
   /user/data:
     get:
       operationId: UserController_getUserData
@@ -549,9 +579,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get user data
+      x-summary-source: derived
   /user/priority:
     get:
       operationId: UserController_getCurrentPriority
@@ -576,9 +608,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get current priority
+      x-summary-source: derived
   /user/giftkeys:
     get:
       operationId: UserController_getGiftKeys
@@ -603,9 +637,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get gift keys
+      x-summary-source: derived
   /user/subscription:
     get:
       operationId: UserController_getSubscription
@@ -630,9 +666,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get subscription
+      x-summary-source: derived
   /user/keystore:
     get:
       operationId: UserController_getKeystore
@@ -657,9 +695,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get keystore
+      x-summary-source: derived
     put:
       operationId: UserController_updateKeystore
       parameters: []
@@ -691,9 +731,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller update keystore
+      x-summary-source: derived
   /user/objects/{type}:
     get:
       operationId: UserController_getObjects
@@ -738,9 +780,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get objects
+      x-summary-source: derived
     put:
       operationId: UserController_createObject
       parameters:
@@ -787,9 +831,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller create object
+      x-summary-source: derived
   /user/objects/{type}/{id}:
     get:
       operationId: UserController_getObject
@@ -824,9 +870,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get object
+      x-summary-source: derived
     patch:
       operationId: UserController_editObject
       parameters:
@@ -884,9 +932,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller edit object
+      x-summary-source: derived
     delete:
       operationId: UserController_deleteObject
       parameters:
@@ -926,9 +976,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller delete object
+      x-summary-source: derived
   /user/clientsettings:
     get:
       operationId: UserController_getClientSettings
@@ -949,9 +1001,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get client settings
+      x-summary-source: derived
     put:
       operationId: UserController_updateClientSettings
       parameters: []
@@ -983,9 +1037,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller update client settings
+      x-summary-source: derived
   /user/objects/batch:
     delete:
       operationId: UserController_batchDeleteObjects
@@ -1018,9 +1074,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller batch delete objects
+      x-summary-source: derived
   /user/create-persistent-token:
     post:
       operationId: UserController_createPersistentToken
@@ -1057,9 +1115,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller create persistent token
+      x-summary-source: derived
   /user/submission:
     post:
       operationId: UserController_postUserSubmission
@@ -1092,9 +1152,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller post user submission
+      x-summary-source: derived
   /user/submission/{event}:
     get:
       operationId: UserController_getUserSubmission
@@ -1120,9 +1182,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get user submission
+      x-summary-source: derived
   /user/vote-submission/{event}:
     get:
       operationId: UserController_getUserSubmissionVotes
@@ -1148,9 +1212,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller get user submission votes
+      x-summary-source: derived
     post:
       operationId: UserController_voteSubmission
       parameters:
@@ -1189,9 +1255,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller vote submission
+      x-summary-source: derived
     delete:
       operationId: UserController_retractSubmissionVote
       parameters:
@@ -1228,23 +1296,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiError'
       tags:
-      - /user/
+      - User
       security:
       - bearer: []
+      summary: User controller retract submission vote
+      x-summary-source: derived
 components:
   schemas:
-    SubscriptionAvailableTrainingSteps:
-      type: object
-      properties:
-        fixedTrainingStepsLeft:
-          type: number
-          description: Amount of available fixed module training steps left (reset every month)
-        purchasedTrainingSteps:
-          type: number
-          description: Amount of available purchased module training steps left
-      required:
-      - fixedTrainingStepsLeft
-      - purchasedTrainingSteps
     UpsertConsentRequest:
       type: object
       properties:
@@ -1279,58 +1337,64 @@ components:
       - personalizationConsent
       - essentialsConsent
       - globalOptOut
-    UserSubmissionVoteInput:
+    SubscriptionResponse:
       type: object
       properties:
-        id:
-          type: string
-      required:
-      - id
-    ApiError:
-      type: object
-      properties:
-        statusCode:
+        tier:
           type: number
-        message:
+          description: Subscription internal tier number, see SubscriptionTiers enum
+        active:
+          type: boolean
+          description: Is subscription active as of the moment of the request
+        expiresAt:
+          type: number
+          description: UNIX timestamp of subscription expiration
+        perks:
+          description: Subscription perks
+          allOf:
+          - $ref: '#/components/schemas/SubscriptionTierPerks'
+        paymentProcessorData:
+          type: object
+          description: Payment processor arbitrary data
+        trainingStepsLeft:
+          description: Amount of available module training steps left
+          allOf:
+          - $ref: '#/components/schemas/SubscriptionAvailableTrainingSteps'
+        isGracePeriod:
+          type: boolean
+          description: Whether the user subscription is in grace period
+      required:
+      - tier
+      - active
+      - expiresAt
+      - perks
+      - paymentProcessorData
+      - trainingStepsLeft
+      - isGracePeriod
+    EmailVerificationStartRequest:
+      type: object
+      properties:
+        email:
           type: string
       required:
-      - statusCode
-      - message
-    BatchDeleteRequest:
+      - email
+    ObjectsResponse:
       type: object
       properties:
-        types:
+        objects:
           type: array
-          description: Array of object types to delete (e.g., stories, storycontent, modules, presets)
           items:
-            type: string
-          example:
-          - stories
-          - storycontent
-          minItems: 1
+            $ref: '#/components/schemas/UserData'
       required:
-      - types
-    UserAccountDataResponse:
+      - objects
+    DeletionStartRequest:
       type: object
       properties:
-        priority:
-          $ref: '#/components/schemas/PriorityResponse'
-        subscription:
-          $ref: '#/components/schemas/SubscriptionResponse'
-        keystore:
-          $ref: '#/components/schemas/GetKeystoreResponse'
-        settings:
-          type:
-          - string
-          - 'null'
-        information:
-          $ref: '#/components/schemas/AccountInformationResponse'
+        email:
+          type: string
+          description: Target email for account deletion
       required:
-      - priority
-      - subscription
-      - keystore
-      - settings
-      - information
+      - email
     DeletionFinishRequest:
       type: object
       properties:
@@ -1340,30 +1404,6 @@ components:
           description: Deletion token provided in the email letter
       required:
       - deletionToken
-    SubscriptionTierPerks:
-      type: object
-      properties:
-        maxPriorityActions:
-          type: number
-          description: Amount of max priority actions
-        startPriority:
-          type: number
-          description: Start priority amount
-        contextTokens:
-          type: number
-          description: Amount of granted context tokens
-        unlimitedMaxPriority:
-          type: boolean
-          description: Is max priority unlimited
-        moduleTrainingSteps:
-          type: number
-          description: Amount of module training steps granted every month
-      required:
-      - maxPriorityActions
-      - startPriority
-      - contextTokens
-      - unlimitedMaxPriority
-      - moduleTrainingSteps
     UserSubmissionInput:
       type: object
       properties:
@@ -1396,43 +1436,62 @@ components:
       - socials
       - mediums
       - event
-    LoginRequest:
+    ApiError:
       type: object
       properties:
-        key:
+        statusCode:
+          type: number
+        message:
           type: string
-          minLength: 64
-          maxLength: 64
-          description: Required access key
-        recaptcha:
-          type: string
-          description: ReCAPTCHA response token for the novelai.net domain. This is optional at this moment(but we will make it mandatory)
       required:
-      - key
-    EmailVerificationStartRequest:
+      - statusCode
+      - message
+    UserSubmissionVoteInput:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
+    GiftKeysResponse:
+      type: object
+      properties:
+        giftKeys:
+          type: array
+          items:
+            type: object
+      required:
+      - giftKeys
+    ChangeMailingListRequest:
       type: object
       properties:
         email:
           type: string
+          description: Current email address. Not required if user has plaintext email stored
+        marketingConsent:
+          type: boolean
+          description: Marketing email consent state
+        uiLanguage:
+          type: object
       required:
-      - email
-    ChangeAccessKeyRequest:
+      - marketingConsent
+    CreateUserResponse:
       type: object
       properties:
-        currentAccessKey:
+        accessToken:
           type: string
-          minLength: 64
-          description: Current access key
-        newAccessKey:
-          type: string
-          minLength: 64
-          description: New access key
-        newEmail:
-          type: string
-          description: New email address
+          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
       required:
-      - currentAccessKey
-      - newAccessKey
+      - accessToken
+    OsanoExternalIdResponse:
+      type: object
+      properties:
+        externalOsanoId:
+          type: string
+          description: External ID for Osano
+          example: 4vxu3LyTNTcoQXdCLQMvZF9Spi-vxfmTJVrj8P7hoLM
+      required:
+      - externalOsanoId
     PriorityResponse:
       type: object
       properties:
@@ -1446,15 +1505,99 @@ components:
       - maxPriorityActions
       - nextRefillAt
       - taskPriority
-    OsanoExternalIdResponse:
+    CreatePersistentTokenInput:
       type: object
       properties:
-        externalOsanoId:
-          type: string
-          description: External ID for Osano
-          example: 4vxu3LyTNTcoQXdCLQMvZF9Spi-vxfmTJVrj8P7hoLM
+        overwrite:
+          type: boolean
+          description: Overwrite existing token
+    BatchDeleteRequest:
+      type: object
+      properties:
+        types:
+          type: array
+          description: Array of object types to delete (e.g., stories, storycontent, modules, presets)
+          items:
+            type: string
+          example:
+          - stories
+          - storycontent
+          minItems: 1
       required:
-      - externalOsanoId
+      - types
+    UpdateKeystoreRequest:
+      type: object
+      properties:
+        keystore:
+          type: string
+          description: Base64-encoded keystore (or empty string to clear)
+        changeIndex:
+          type: number
+          description: Current change index
+      required:
+      - keystore
+    UserAccountDataResponse:
+      type: object
+      properties:
+        priority:
+          $ref: '#/components/schemas/PriorityResponse'
+        subscription:
+          $ref: '#/components/schemas/SubscriptionResponse'
+        keystore:
+          $ref: '#/components/schemas/GetKeystoreResponse'
+        settings:
+          type:
+          - string
+          - 'null'
+        information:
+          $ref: '#/components/schemas/AccountInformationResponse'
+      required:
+      - priority
+      - subscription
+      - keystore
+      - settings
+      - information
+    GoogleSSORequest:
+      type: object
+      properties:
+        idToken:
+          type: string
+          description: Google SSO ID token
+      required:
+      - idToken
+    GetKeystoreResponse:
+      type: object
+      properties:
+        keystore:
+          type:
+          - string
+          - 'null'
+      required:
+      - keystore
+    SubscriptionTierPerks:
+      type: object
+      properties:
+        maxPriorityActions:
+          type: number
+          description: Amount of max priority actions
+        startPriority:
+          type: number
+          description: Start priority amount
+        contextTokens:
+          type: number
+          description: Amount of granted context tokens
+        unlimitedMaxPriority:
+          type: boolean
+          description: Is max priority unlimited
+        moduleTrainingSteps:
+          type: number
+          description: Amount of module training steps granted every month
+      required:
+      - maxPriorityActions
+      - startPriority
+      - contextTokens
+      - unlimitedMaxPriority
+      - moduleTrainingSteps
     RecoveryFinishRequest:
       type: object
       properties:
@@ -1475,17 +1618,23 @@ components:
       - recoveryToken
       - newAccessKey
       - deleteContent
-    EmailVerificationRequest:
+    ChangeAccessKeyRequest:
       type: object
       properties:
-        verificationToken:
+        currentAccessKey:
           type: string
           minLength: 64
-          maxLength: 64
-        uiLanguage:
-          type: object
+          description: Current access key
+        newAccessKey:
+          type: string
+          minLength: 64
+          description: New access key
+        newEmail:
+          type: string
+          description: New email address
       required:
-      - verificationToken
+      - currentAccessKey
+      - newAccessKey
     CreateUserRequest:
       type: object
       properties:
@@ -1523,39 +1672,6 @@ components:
       - key
       - emailCleartext
       - allowMarketingEmails
-    UpdateKeystoreRequest:
-      type: object
-      properties:
-        keystore:
-          type: string
-          description: Base64-encoded keystore (or empty string to clear)
-        changeIndex:
-          type: number
-          description: Current change index
-      required:
-      - keystore
-    SuccessfulLoginResponse:
-      type: object
-      properties:
-        accessToken:
-          type: string
-          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
-      required:
-      - accessToken
-    RecoveryStartRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          description: Target email for account recovery
-        locale:
-          type: object
-          enum:
-          - en
-          - jp
-          description: Locale used by the user, e.g. 'en' or 'jp
-      required:
-      - email
     UserDataInput:
       type: object
       properties:
@@ -1572,19 +1688,83 @@ components:
       required:
       - meta
       - data
-    ChangeMailingListRequest:
+    UserData:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Object ID
+        meta:
+          type: string
+          maxLength: 128
+          description: Accompanying non confidential information
+        data:
+          type: string
+          description: Base64-encoded buffer
+        lastUpdatedAt:
+          type: number
+          description: UNIX timestamp
+        changeIndex:
+          type: number
+          description: Incremental revision of the object
+        type:
+          type: string
+          minLength: 1
+          maxLength: 16
+      required:
+      - id
+      - meta
+      - data
+      - lastUpdatedAt
+      - changeIndex
+      - type
+    RecoveryStartRequest:
       type: object
       properties:
         email:
           type: string
-          description: Current email address. Not required if user has plaintext email stored
-        marketingConsent:
-          type: boolean
-          description: Marketing email consent state
-        uiLanguage:
+          description: Target email for account recovery
+        locale:
           type: object
+          enum:
+          - en
+          - jp
+          description: Locale used by the user, e.g. 'en' or 'jp
       required:
-      - marketingConsent
+      - email
+    LoginRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          minLength: 64
+          maxLength: 64
+          description: Required access key
+        recaptcha:
+          type: string
+          description: ReCAPTCHA response token for the novelai.net domain. This is optional at this moment(but we will make it mandatory)
+      required:
+      - key
+    SubscriptionAvailableTrainingSteps:
+      type: object
+      properties:
+        fixedTrainingStepsLeft:
+          type: number
+          description: Amount of available fixed module training steps left (reset every month)
+        purchasedTrainingSteps:
+          type: number
+          description: Amount of available purchased module training steps left
+      required:
+      - fixedTrainingStepsLeft
+      - purchasedTrainingSteps
+    SuccessfulLoginResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
+      required:
+      - accessToken
     AccountInformationResponse:
       type: object
       properties:
@@ -1624,36 +1804,17 @@ components:
       - accountCreatedAt
       - banStatus
       - banMessage
-    UserData:
+    EmailVerificationRequest:
       type: object
       properties:
-        id:
+        verificationToken:
           type: string
-          description: Object ID
-        meta:
-          type: string
-          maxLength: 128
-          description: Accompanying non confidential information
-        data:
-          type: string
-          description: Base64-encoded buffer
-        lastUpdatedAt:
-          type: number
-          description: UNIX timestamp
-        changeIndex:
-          type: number
-          description: Incremental revision of the object
-        type:
-          type: string
-          minLength: 1
-          maxLength: 16
+          minLength: 64
+          maxLength: 64
+        uiLanguage:
+          type: object
       required:
-      - id
-      - meta
-      - data
-      - lastUpdatedAt
-      - changeIndex
-      - type
+      - verificationToken
     CreatePersistentTokenResponse:
       type: object
       properties:
@@ -1663,97 +1824,6 @@ components:
           - 'null'
       required:
       - token
-    CreateUserResponse:
-      type: object
-      properties:
-        accessToken:
-          type: string
-          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
-      required:
-      - accessToken
-    GoogleSSORequest:
-      type: object
-      properties:
-        idToken:
-          type: string
-          description: Google SSO ID token
-      required:
-      - idToken
-    CreatePersistentTokenInput:
-      type: object
-      properties:
-        overwrite:
-          type: boolean
-          description: Overwrite existing token
-    GiftKeysResponse:
-      type: object
-      properties:
-        giftKeys:
-          type: array
-          items:
-            type: object
-      required:
-      - giftKeys
-    DeletionStartRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          description: Target email for account deletion
-      required:
-      - email
-    SubscriptionResponse:
-      type: object
-      properties:
-        tier:
-          type: number
-          description: Subscription internal tier number, see SubscriptionTiers enum
-        active:
-          type: boolean
-          description: Is subscription active as of the moment of the request
-        expiresAt:
-          type: number
-          description: UNIX timestamp of subscription expiration
-        perks:
-          description: Subscription perks
-          allOf:
-          - $ref: '#/components/schemas/SubscriptionTierPerks'
-        paymentProcessorData:
-          type: object
-          description: Payment processor arbitrary data
-        trainingStepsLeft:
-          description: Amount of available module training steps left
-          allOf:
-          - $ref: '#/components/schemas/SubscriptionAvailableTrainingSteps'
-        isGracePeriod:
-          type: boolean
-          description: Whether the user subscription is in grace period
-      required:
-      - tier
-      - active
-      - expiresAt
-      - perks
-      - paymentProcessorData
-      - trainingStepsLeft
-      - isGracePeriod
-    ObjectsResponse:
-      type: object
-      properties:
-        objects:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserData'
-      required:
-      - objects
-    GetKeystoreResponse:
-      type: object
-      properties:
-        keystore:
-          type:
-          - string
-          - 'null'
-      required:
-      - keystore
   securitySchemes:
     bearer:
       scheme: bearer

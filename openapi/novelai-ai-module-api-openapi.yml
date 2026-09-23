@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: NovelAI Primary /ai/ /ai/ /ai/module/ API
-  description: "\n      The Primary API describes actions that our Frontend makes against the NovelAI backend.\n\n      In general, third-party NovelAI API users should not engage with the Primary API beyond the /ai/ routes.\n\n      Third-party API users developing user-facing applications must ask for a user's Persistent API token to continue.\n      For security reasons it is not recommended to hold a user's credentials in plaintext.\n\n      IMPORTANT: Existing and new API users must read the upcoming generation-specific documentation:\n\n      Image Generation documentation: https://image.novelai.net/docs/index.html\n      Text Generation documentation: https://text.novelai.net/docs/index.html\n    "
+  title: NovelAI Primary /ai/module/ API
+  description: The Primary API describes actions that our Frontend makes against the NovelAI backend.
   version: '1.0'
   contact: {}
 servers:
@@ -13,8 +13,99 @@ paths:
   /ai/module/all:
     get:
       operationId: AIModuleController_allModules
-      summary: ''
-      description: "description: \"Access Token is incorrect.\",\n    type: ApiError,\n  })\n\n    status: HttpStatus.PAYMENT_REQUIRED,\n    description: \"An active subscription required to access this endpoint.\",\n    type: ApiError,\n  })\n\n    description: \"A conflict error occured.\",\n    type: ApiError,\n  })\n\n    description: \"The training request has been successfully sent.\",\n    type: AiModuleDto,\n  })\n\n    description: \"A validation error occured.\",\n    type: ApiError,\n  })\n  async trainModule(\n\n\n  ): Promise<AiModuleDto> {\n    const user: User = req.user;\n\n    if (!aiTrainingRequest)\n      throw new HttpException(\"Incorrect body.\", HttpStatus.BAD_REQUEST);\n\n    if (\n      !GenerationModelAccessRightsData[aiTrainingRequest.model].canTrainModules\n    )\n      throw new HttpException(\n        \"Specified model does not support module training.\",\n        HttpStatus.BAD_REQUEST,\n      );\nif (!user.hasSubscription())\n      throw new HttpException(\n        \"Incorrect subscription.\",\n        HttpStatus.PAYMENT_REQUIRED,\n      );\nif (aiTrainingRequest.steps < 50)\n      throw new HttpException(\n        \"Training steps amount is too low.\",\n        HttpStatus.CONFLICT,\n      );\n\n    if (\n      user.availableModuleTrainingSteps + user.purchasedModuleTrainingSteps <\n      aiTrainingRequest.steps\n    )\n      throw new HttpException(\n        \"You have an insufficent amount of available training steps.\",\n        HttpStatus.CONFLICT,\n      );\n\n    if (process.env.NODE_ENV === \"production\") {\n      const modules = (\n        await this.aiModuleService.getAllUserModules(user)\n      ).filter((item) => item.status == \"pending\" || item.status == \"training\");\n\n      if (modules.length >= MAX_SIMULTANEOUS_TRAINING_MODULES)\n        throw new HttpException(\n          \"You have reached the limit of concurrently training modules.\",\n          HttpStatus.CONFLICT,\n        );\n    }\n\n    return await this.aiModuleService.trainModule(user, aiTrainingRequest);\n  }"
+      summary: AI module controller all modules
+      description: 'description: "Access Token is incorrect.",
+
+        type: ApiError,
+
+        })
+
+
+        status: HttpStatus.PAYMENT_REQUIRED,
+
+        description: "An active subscription required to access this endpoint.",
+
+        type: ApiError,
+
+        })
+
+
+        description: "A conflict error occured.",
+
+        type: ApiError,
+
+        })
+
+
+        description: "The training request has been successfully sent.",
+
+        type: AiModuleDto,
+
+        })
+
+
+        description: "A validation error occured.",
+
+        type: ApiError,
+
+        })
+
+        async trainModule(
+
+
+        ): Promise {
+
+        const user: User = req.user;
+
+
+        if (!aiTrainingRequest)
+
+        throw new HttpException("Incorrect body.", HttpStatus.BAD_REQUEST);
+
+
+        if (
+
+        !GenerationModelAccessRightsData[aiTrainingRequest.model].canTrainModules
+
+        )
+
+        throw new HttpException(
+
+        "Specified model does not support module training.",
+
+        HttpStatus.BAD_REQUEST,
+
+        );
+
+        if (!user.hasSubscription())
+
+        throw new HttpException(
+
+        "Incorrect subscription.",
+
+        HttpStatus.PAYMENT_REQUIRED,
+
+        );
+
+        if (aiTrainingRequest.steps item.status == "pending" || item.status == "training");
+
+
+        if (modules.length >= MAX_SIMULTANEOUS_TRAINING_MODULES)
+
+        throw new HttpException(
+
+        "You have reached the limit of concurrently training modules.",
+
+        HttpStatus.CONFLICT,
+
+        );
+
+        }
+
+
+        return await this.aiModuleService.trainModule(user, aiTrainingRequest);
+
+        }'
       parameters: []
       responses:
         '200':
@@ -41,6 +132,7 @@ paths:
       - /ai/module/
       security:
       - bearer: []
+      x-summary-source: derived
   /ai/module/{id}:
     get:
       operationId: AIModuleController_getModule
@@ -79,6 +171,8 @@ paths:
       - /ai/module/
       security:
       - bearer: []
+      summary: AI module controller get module
+      x-summary-source: derived
     delete:
       operationId: AIModuleController_deleteModule
       parameters:
@@ -122,6 +216,8 @@ paths:
       - /ai/module/
       security:
       - bearer: []
+      summary: AI module controller delete module
+      x-summary-source: derived
   /ai/module/buy-training-steps:
     post:
       operationId: AIModuleController_buyTrainingSteps
@@ -163,28 +259,10 @@ paths:
       - /ai/module/
       security:
       - bearer: []
+      summary: AI module controller buy training steps
+      x-summary-source: derived
 components:
   schemas:
-    ApiError:
-      type: object
-      properties:
-        statusCode:
-          type: number
-        message:
-          type: string
-      required:
-      - statusCode
-      - message
-    BuyTrainingStepsRequest:
-      type: object
-      properties:
-        amount:
-          type: integer
-          minimum: 2000
-          maximum: 10000
-          description: Amount of module training steps to purchase.
-      required:
-      - amount
     AiModuleDto:
       type: object
       properties:
@@ -235,6 +313,26 @@ components:
       - id
       - name
       - description
+    BuyTrainingStepsRequest:
+      type: object
+      properties:
+        amount:
+          type: integer
+          minimum: 2000
+          maximum: 10000
+          description: Amount of module training steps to purchase.
+      required:
+      - amount
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
   securitySchemes:
     bearer:
       scheme: bearer

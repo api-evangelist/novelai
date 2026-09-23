@@ -1,0 +1,26 @@
+# Front Door AI Index — novelai — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: novelai
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: novelai.net
+  final_host: novelai.net
+  ownership: own
+  owner: novelai
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 21
+  host_score: 21
+  density: 28.23
+  words: 744
+  tiers:
+    agentic: 4
+    core: 17
+    model: 0
+  ambiguous: 0
+  top_terms:
+    AI: 17
+    prompts: 4

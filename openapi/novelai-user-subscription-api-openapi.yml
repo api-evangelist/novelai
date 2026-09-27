@@ -110,29 +110,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BindSubscriptionRequest:
-      type: object
-      properties:
-        paymentProcessor:
-          type: string
-          enum:
-          - giftkey
-          - trial
-          description: Subscription payment processor
-        subscriptionId:
-          type: string
-          description: Payment processor ID
-        confirmedReplace:
-          type: object
-          default: false
-          description: Whether the user confirmed replacing the subscription
-        confirmedIgnore:
-          type: object
-          default: false
-          description: Whether the user confirmed ignoring the subscription
-      required:
-      - paymentProcessor
-      - subscriptionId
     ChangeSubscriptionPlanRequest:
       type: object
       properties:
@@ -156,6 +133,29 @@ components:
       required:
       - statusCode
       - message
+    BindSubscriptionRequest:
+      type: object
+      properties:
+        paymentProcessor:
+          type: string
+          enum:
+          - giftkey
+          - trial
+          description: Subscription payment processor
+        subscriptionId:
+          type: string
+          description: Payment processor ID
+        confirmedReplace:
+          type: object
+          default: false
+          description: Whether the user confirmed replacing the subscription
+        confirmedIgnore:
+          type: object
+          default: false
+          description: Whether the user confirmed ignoring the subscription
+      required:
+      - paymentProcessor
+      - subscriptionId
   securitySchemes:
     bearer:
       scheme: bearer

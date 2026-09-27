@@ -32,7 +32,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/novelai.png
 tags:
   - Artificial Intelligence
-  - Image-Generation
+  - Image Generation
   - LLM
   - Storytelling
 tags_raw:
@@ -40,6 +40,7 @@ tags_raw:
   - Image Generation
   - LLM
   - Storytelling
+  - Image-Generation
 url: https://raw.githubusercontent.com/api-evangelist/novelai/refs/heads/main/apis.yml
 created: '2024-07-02'
 modified: '2026-04-28'
@@ -52,12 +53,13 @@ apis:
   humanURL: https://api.novelai.net/docs/
   tags:
   - Artificial Intelligence
-  - Image-Generation
+  - Image Generation
   - LLM
   tags_raw:
   - AI
   - Image Generation
   - LLM
+  - Image-Generation
   properties:
   - type: Documentation
     url: https://api.novelai.net/docs/

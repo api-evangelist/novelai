@@ -1303,6 +1303,139 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CreatePersistentTokenInput:
+      type: object
+      properties:
+        overwrite:
+          type: boolean
+          description: Overwrite existing token
+    SubscriptionTierPerks:
+      type: object
+      properties:
+        maxPriorityActions:
+          type: number
+          description: Amount of max priority actions
+        startPriority:
+          type: number
+          description: Start priority amount
+        contextTokens:
+          type: number
+          description: Amount of granted context tokens
+        unlimitedMaxPriority:
+          type: boolean
+          description: Is max priority unlimited
+        moduleTrainingSteps:
+          type: number
+          description: Amount of module training steps granted every month
+      required:
+      - maxPriorityActions
+      - startPriority
+      - contextTokens
+      - unlimitedMaxPriority
+      - moduleTrainingSteps
+    UpdateKeystoreRequest:
+      type: object
+      properties:
+        keystore:
+          type: string
+          description: Base64-encoded keystore (or empty string to clear)
+        changeIndex:
+          type: number
+          description: Current change index
+      required:
+      - keystore
+    UserSubmissionInput:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Base64-encoded buffer
+        dataName:
+          type: string
+          maxLength: 256
+        authorName:
+          type: string
+          maxLength: 256
+        authorEmail:
+          type: string
+          maxLength: 256
+        socials:
+          type: string
+          maxLength: 4096
+        mediums:
+          type: string
+          maxLength: 4096
+        event:
+          type: string
+          maxLength: 256
+      required:
+      - data
+      - dataName
+      - authorName
+      - authorEmail
+      - socials
+      - mediums
+      - event
+    SuccessfulLoginResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
+      required:
+      - accessToken
+    ChangeMailingListRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Current email address. Not required if user has plaintext email stored
+        marketingConsent:
+          type: boolean
+          description: Marketing email consent state
+        uiLanguage:
+          type: object
+      required:
+      - marketingConsent
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
+    RecoveryFinishRequest:
+      type: object
+      properties:
+        recoveryToken:
+          type: string
+          minLength: 16
+          description: Recovery token provided in the email letter
+        newAccessKey:
+          type: string
+          minLength: 64
+          maxLength: 64
+          description: New access key
+        deleteContent:
+          type: boolean
+          description: Should the server reset keystore and remove objects of stories and storycontent type?
+          default: false
+      required:
+      - recoveryToken
+      - newAccessKey
+      - deleteContent
+    GetKeystoreResponse:
+      type: object
+      properties:
+        keystore:
+          type:
+          - string
+          - 'null'
+      required:
+      - keystore
     UpsertConsentRequest:
       type: object
       properties:
@@ -1337,205 +1470,6 @@ components:
       - personalizationConsent
       - essentialsConsent
       - globalOptOut
-    SubscriptionResponse:
-      type: object
-      properties:
-        tier:
-          type: number
-          description: Subscription internal tier number, see SubscriptionTiers enum
-        active:
-          type: boolean
-          description: Is subscription active as of the moment of the request
-        expiresAt:
-          type: number
-          description: UNIX timestamp of subscription expiration
-        perks:
-          description: Subscription perks
-          allOf:
-          - $ref: '#/components/schemas/SubscriptionTierPerks'
-        paymentProcessorData:
-          type: object
-          description: Payment processor arbitrary data
-        trainingStepsLeft:
-          description: Amount of available module training steps left
-          allOf:
-          - $ref: '#/components/schemas/SubscriptionAvailableTrainingSteps'
-        isGracePeriod:
-          type: boolean
-          description: Whether the user subscription is in grace period
-      required:
-      - tier
-      - active
-      - expiresAt
-      - perks
-      - paymentProcessorData
-      - trainingStepsLeft
-      - isGracePeriod
-    EmailVerificationStartRequest:
-      type: object
-      properties:
-        email:
-          type: string
-      required:
-      - email
-    ObjectsResponse:
-      type: object
-      properties:
-        objects:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserData'
-      required:
-      - objects
-    DeletionStartRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          description: Target email for account deletion
-      required:
-      - email
-    DeletionFinishRequest:
-      type: object
-      properties:
-        deletionToken:
-          type: string
-          minLength: 16
-          description: Deletion token provided in the email letter
-      required:
-      - deletionToken
-    UserSubmissionInput:
-      type: object
-      properties:
-        data:
-          type: string
-          description: Base64-encoded buffer
-        dataName:
-          type: string
-          maxLength: 256
-        authorName:
-          type: string
-          maxLength: 256
-        authorEmail:
-          type: string
-          maxLength: 256
-        socials:
-          type: string
-          maxLength: 4096
-        mediums:
-          type: string
-          maxLength: 4096
-        event:
-          type: string
-          maxLength: 256
-      required:
-      - data
-      - dataName
-      - authorName
-      - authorEmail
-      - socials
-      - mediums
-      - event
-    ApiError:
-      type: object
-      properties:
-        statusCode:
-          type: number
-        message:
-          type: string
-      required:
-      - statusCode
-      - message
-    UserSubmissionVoteInput:
-      type: object
-      properties:
-        id:
-          type: string
-      required:
-      - id
-    GiftKeysResponse:
-      type: object
-      properties:
-        giftKeys:
-          type: array
-          items:
-            type: object
-      required:
-      - giftKeys
-    ChangeMailingListRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          description: Current email address. Not required if user has plaintext email stored
-        marketingConsent:
-          type: boolean
-          description: Marketing email consent state
-        uiLanguage:
-          type: object
-      required:
-      - marketingConsent
-    CreateUserResponse:
-      type: object
-      properties:
-        accessToken:
-          type: string
-          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
-      required:
-      - accessToken
-    OsanoExternalIdResponse:
-      type: object
-      properties:
-        externalOsanoId:
-          type: string
-          description: External ID for Osano
-          example: 4vxu3LyTNTcoQXdCLQMvZF9Spi-vxfmTJVrj8P7hoLM
-      required:
-      - externalOsanoId
-    PriorityResponse:
-      type: object
-      properties:
-        maxPriorityActions:
-          type: number
-        nextRefillAt:
-          type: number
-        taskPriority:
-          type: number
-      required:
-      - maxPriorityActions
-      - nextRefillAt
-      - taskPriority
-    CreatePersistentTokenInput:
-      type: object
-      properties:
-        overwrite:
-          type: boolean
-          description: Overwrite existing token
-    BatchDeleteRequest:
-      type: object
-      properties:
-        types:
-          type: array
-          description: Array of object types to delete (e.g., stories, storycontent, modules, presets)
-          items:
-            type: string
-          example:
-          - stories
-          - storycontent
-          minItems: 1
-      required:
-      - types
-    UpdateKeystoreRequest:
-      type: object
-      properties:
-        keystore:
-          type: string
-          description: Base64-encoded keystore (or empty string to clear)
-        changeIndex:
-          type: number
-          description: Current change index
-      required:
-      - keystore
     UserAccountDataResponse:
       type: object
       properties:
@@ -1557,137 +1491,37 @@ components:
       - keystore
       - settings
       - information
-    GoogleSSORequest:
+    ObjectsResponse:
       type: object
       properties:
-        idToken:
-          type: string
-          description: Google SSO ID token
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserData'
       required:
-      - idToken
-    GetKeystoreResponse:
-      type: object
-      properties:
-        keystore:
-          type:
-          - string
-          - 'null'
-      required:
-      - keystore
-    SubscriptionTierPerks:
+      - objects
+    PriorityResponse:
       type: object
       properties:
         maxPriorityActions:
           type: number
-          description: Amount of max priority actions
-        startPriority:
+        nextRefillAt:
           type: number
-          description: Start priority amount
-        contextTokens:
+        taskPriority:
           type: number
-          description: Amount of granted context tokens
-        unlimitedMaxPriority:
-          type: boolean
-          description: Is max priority unlimited
-        moduleTrainingSteps:
-          type: number
-          description: Amount of module training steps granted every month
       required:
       - maxPriorityActions
-      - startPriority
-      - contextTokens
-      - unlimitedMaxPriority
-      - moduleTrainingSteps
-    RecoveryFinishRequest:
+      - nextRefillAt
+      - taskPriority
+    CreatePersistentTokenResponse:
       type: object
       properties:
-        recoveryToken:
-          type: string
-          minLength: 16
-          description: Recovery token provided in the email letter
-        newAccessKey:
-          type: string
-          minLength: 64
-          maxLength: 64
-          description: New access key
-        deleteContent:
-          type: boolean
-          description: Should the server reset keystore and remove objects of stories and storycontent type?
-          default: false
+        token:
+          type:
+          - string
+          - 'null'
       required:
-      - recoveryToken
-      - newAccessKey
-      - deleteContent
-    ChangeAccessKeyRequest:
-      type: object
-      properties:
-        currentAccessKey:
-          type: string
-          minLength: 64
-          description: Current access key
-        newAccessKey:
-          type: string
-          minLength: 64
-          description: New access key
-        newEmail:
-          type: string
-          description: New email address
-      required:
-      - currentAccessKey
-      - newAccessKey
-    CreateUserRequest:
-      type: object
-      properties:
-        recaptcha:
-          type: string
-          description: ReCAPTCHA response token for the novelai.net domain
-        key:
-          type: string
-          minLength: 64
-          description: Required access key
-        email:
-          type: string
-          minLength: 64
-          maxLength: 64
-          description: SHA-256 hashed email in hexadecimal
-        emailCleartext:
-          type: string
-          description: Email address (provided as cleartext for email verification, direct service communications, and opt-in marketing)
-        giftkey:
-          type: string
-          description: Subscription gift key, if provided will be automatically activated upon registration
-        locale:
-          type: object
-          enum:
-          - en
-          - jp
-          description: Locale used by the user, e.g. 'en' or 'jp
-        allowMarketingEmails:
-          type: boolean
-          description: If the user opts in to marketing emails
-        isRecaptchaEnterprise:
-          type: boolean
-      required:
-      - recaptcha
-      - key
-      - emailCleartext
-      - allowMarketingEmails
-    UserDataInput:
-      type: object
-      properties:
-        meta:
-          type: string
-          maxLength: 128
-          description: Accompanying non confidential information
-        data:
-          type: string
-          description: Base64-encoded buffer
-        changeIndex:
-          type: number
-          description: Current change index
-      required:
-      - meta
-      - data
+      - token
     UserData:
       type: object
       properties:
@@ -1718,53 +1552,6 @@ components:
       - lastUpdatedAt
       - changeIndex
       - type
-    RecoveryStartRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          description: Target email for account recovery
-        locale:
-          type: object
-          enum:
-          - en
-          - jp
-          description: Locale used by the user, e.g. 'en' or 'jp
-      required:
-      - email
-    LoginRequest:
-      type: object
-      properties:
-        key:
-          type: string
-          minLength: 64
-          maxLength: 64
-          description: Required access key
-        recaptcha:
-          type: string
-          description: ReCAPTCHA response token for the novelai.net domain. This is optional at this moment(but we will make it mandatory)
-      required:
-      - key
-    SubscriptionAvailableTrainingSteps:
-      type: object
-      properties:
-        fixedTrainingStepsLeft:
-          type: number
-          description: Amount of available fixed module training steps left (reset every month)
-        purchasedTrainingSteps:
-          type: number
-          description: Amount of available purchased module training steps left
-      required:
-      - fixedTrainingStepsLeft
-      - purchasedTrainingSteps
-    SuccessfulLoginResponse:
-      type: object
-      properties:
-        accessToken:
-          type: string
-          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
-      required:
-      - accessToken
     AccountInformationResponse:
       type: object
       properties:
@@ -1815,15 +1602,228 @@ components:
           type: object
       required:
       - verificationToken
-    CreatePersistentTokenResponse:
+    ChangeAccessKeyRequest:
       type: object
       properties:
-        token:
-          type:
-          - string
-          - 'null'
+        currentAccessKey:
+          type: string
+          minLength: 64
+          description: Current access key
+        newAccessKey:
+          type: string
+          minLength: 64
+          description: New access key
+        newEmail:
+          type: string
+          description: New email address
       required:
-      - token
+      - currentAccessKey
+      - newAccessKey
+    UserDataInput:
+      type: object
+      properties:
+        meta:
+          type: string
+          maxLength: 128
+          description: Accompanying non confidential information
+        data:
+          type: string
+          description: Base64-encoded buffer
+        changeIndex:
+          type: number
+          description: Current change index
+      required:
+      - meta
+      - data
+    UserSubmissionVoteInput:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
+    DeletionStartRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Target email for account deletion
+      required:
+      - email
+    BatchDeleteRequest:
+      type: object
+      properties:
+        types:
+          type: array
+          description: Array of object types to delete (e.g., stories, storycontent, modules, presets)
+          items:
+            type: string
+          example:
+          - stories
+          - storycontent
+          minItems: 1
+      required:
+      - types
+    SubscriptionAvailableTrainingSteps:
+      type: object
+      properties:
+        fixedTrainingStepsLeft:
+          type: number
+          description: Amount of available fixed module training steps left (reset every month)
+        purchasedTrainingSteps:
+          type: number
+          description: Amount of available purchased module training steps left
+      required:
+      - fixedTrainingStepsLeft
+      - purchasedTrainingSteps
+    OsanoExternalIdResponse:
+      type: object
+      properties:
+        externalOsanoId:
+          type: string
+          description: External ID for Osano
+          example: 4vxu3LyTNTcoQXdCLQMvZF9Spi-vxfmTJVrj8P7hoLM
+      required:
+      - externalOsanoId
+    GiftKeysResponse:
+      type: object
+      properties:
+        giftKeys:
+          type: array
+          items:
+            type: object
+      required:
+      - giftKeys
+    RecoveryStartRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Target email for account recovery
+        locale:
+          type: object
+          enum:
+          - en
+          - jp
+          description: Locale used by the user, e.g. 'en' or 'jp
+      required:
+      - email
+    DeletionFinishRequest:
+      type: object
+      properties:
+        deletionToken:
+          type: string
+          minLength: 16
+          description: Deletion token provided in the email letter
+      required:
+      - deletionToken
+    EmailVerificationStartRequest:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+    CreateUserResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
+      required:
+      - accessToken
+    GoogleSSORequest:
+      type: object
+      properties:
+        idToken:
+          type: string
+          description: Google SSO ID token
+      required:
+      - idToken
+    LoginRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          minLength: 64
+          maxLength: 64
+          description: Required access key
+        recaptcha:
+          type: string
+          description: ReCAPTCHA response token for the novelai.net domain. This is optional at this moment(but we will make it mandatory)
+      required:
+      - key
+    CreateUserRequest:
+      type: object
+      properties:
+        recaptcha:
+          type: string
+          description: ReCAPTCHA response token for the novelai.net domain
+        key:
+          type: string
+          minLength: 64
+          description: Required access key
+        email:
+          type: string
+          minLength: 64
+          maxLength: 64
+          description: SHA-256 hashed email in hexadecimal
+        emailCleartext:
+          type: string
+          description: Email address (provided as cleartext for email verification, direct service communications, and opt-in marketing)
+        giftkey:
+          type: string
+          description: Subscription gift key, if provided will be automatically activated upon registration
+        locale:
+          type: object
+          enum:
+          - en
+          - jp
+          description: Locale used by the user, e.g. 'en' or 'jp
+        allowMarketingEmails:
+          type: boolean
+          description: If the user opts in to marketing emails
+        isRecaptchaEnterprise:
+          type: boolean
+      required:
+      - recaptcha
+      - key
+      - emailCleartext
+      - allowMarketingEmails
+    SubscriptionResponse:
+      type: object
+      properties:
+        tier:
+          type: number
+          description: Subscription internal tier number, see SubscriptionTiers enum
+        active:
+          type: boolean
+          description: Is subscription active as of the moment of the request
+        expiresAt:
+          type: number
+          description: UNIX timestamp of subscription expiration
+        perks:
+          description: Subscription perks
+          allOf:
+          - $ref: '#/components/schemas/SubscriptionTierPerks'
+        paymentProcessorData:
+          type: object
+          description: Payment processor arbitrary data
+        trainingStepsLeft:
+          description: Amount of available module training steps left
+          allOf:
+          - $ref: '#/components/schemas/SubscriptionAvailableTrainingSteps'
+        isGracePeriod:
+          type: boolean
+          description: Whether the user subscription is in grace period
+      required:
+      - tier
+      - active
+      - expiresAt
+      - perks
+      - paymentProcessorData
+      - trainingStepsLeft
+      - isGracePeriod
   securitySchemes:
     bearer:
       scheme: bearer

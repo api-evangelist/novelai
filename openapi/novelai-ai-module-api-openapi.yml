@@ -263,6 +263,26 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
+    BuyTrainingStepsRequest:
+      type: object
+      properties:
+        amount:
+          type: integer
+          minimum: 2000
+          maximum: 10000
+          description: Amount of module training steps to purchase.
+      required:
+      - amount
     AiModuleDto:
       type: object
       properties:
@@ -313,26 +333,6 @@ components:
       - id
       - name
       - description
-    BuyTrainingStepsRequest:
-      type: object
-      properties:
-        amount:
-          type: integer
-          minimum: 2000
-          maximum: 10000
-          description: Amount of module training steps to purchase.
-      required:
-      - amount
-    ApiError:
-      type: object
-      properties:
-        statusCode:
-          type: number
-        message:
-          type: string
-      required:
-      - statusCode
-      - message
   securitySchemes:
     bearer:
       scheme: bearer

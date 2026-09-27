@@ -470,6 +470,164 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    AiGeneratePromptRequest:
+      type: object
+      properties:
+        model:
+          default: euterpe-v2
+          enum:
+          - 2.7B
+          - 6B-v4
+          - euterpe-v2
+          - genji-python-6b
+          - genji-jp-6b
+          - genji-jp-6b-v2
+          - krake-v2
+          - hypebot
+          - infillmodel
+          - cassandra
+          - sigurd-2.9b-v1
+          - blue
+          - red
+          - green
+          - purple
+          - clio-v1
+          - kayra-v1
+          type: string
+          description: Used text generation model
+        prompt:
+          type: string
+          minLength: 1
+          maxLength: 40000
+          description: Input for the text generation model
+          example: Text generation example.
+        temp:
+          type: number
+          minimum: 0.1
+          maximum: 100
+        tokens_to_generate:
+          type: number
+          minimum: 1
+          maximum: 200
+      required:
+      - model
+      - prompt
+      - temp
+      - tokens_to_generate
+    AiGenerateImageRequest:
+      type: object
+      properties:
+        input:
+          type: string
+          minLength: 1
+          maxLength: 40000
+          description: Input for the text generation model
+          example: Image generation example.
+        model:
+          enum:
+          - nai-diffusion
+          - safe-diffusion
+          - nai-diffusion-furry
+          - custom
+          - nai-diffusion-inpainting
+          - nai-diffusion-3-inpainting
+          - safe-diffusion-inpainting
+          - furry-diffusion-inpainting
+          - kandinsky-vanilla
+          - nai-diffusion-2
+          - nai-diffusion-3
+          type: string
+          description: Used image generation model
+        action:
+          enum:
+          - generate
+          - img2img
+          - infill
+          type: string
+          description: Action to use, default is generate
+        parameters:
+          type: object
+          description: Generation parameters (model specific)
+        url:
+          type: string
+          pattern: https:\/\/[0-9a-z\-\_]*\.tenant-novelai\.knative\.(chi\.coreweave\.com|[0-9a-z]+\.coreweave\.cloud)\/.*
+          description: Custom image generation URL
+      required:
+      - input
+      - model
+      - parameters
+    AiAnnotateImageRequest:
+      type: object
+      properties:
+        model:
+          enum:
+          - canny
+          - hed
+          - midas
+          - mlsd
+          - openpose
+          - uniformer
+          - fake_scribble
+          type: string
+          description: Model to use
+        parameters:
+          type: object
+          description: Annotation parameters (model specific)
+      required:
+      - model
+      - parameters
+    AiGenerateResponse:
+      type: object
+      properties:
+        output:
+          type: string
+          description: Output from the text generation model, if defined
+        error:
+          type: string
+          description: Error from the generation node, if defined
+    AiRequestImageGenerationTag:
+      type: object
+      properties:
+        tag:
+          type: string
+        count:
+          type: number
+        confidence:
+          type: number
+      required:
+      - tag
+      - count
+      - confidence
+    AiGenerateImageResponse:
+      type: object
+      properties:
+        ptr:
+          type: number
+          description: Incrementing version pointer
+        image:
+          type: string
+          description: Generated image in base64
+        final:
+          type: boolean
+          description: Set to true if the image is final and the generation ended
+        error:
+          type: string
+          description: Error from the generation node, if defined. Usually means the end of stream
+    AiGenerateStreamableResponse:
+      type: object
+      properties:
+        ptr:
+          type: number
+          description: Incrementing token pointer
+        token:
+          type: string
+          description: Generated token
+        final:
+          type: boolean
+          description: Set to true if the token is final and the generation ended
+        error:
+          type: string
+          description: Error from the generation node, if defined. Usually means the end of stream
     AiSequenceClassificationResponse:
       type: object
       properties:
@@ -501,15 +659,6 @@ components:
         error:
           type: string
           description: Error, if defined
-    AiGenerateResponse:
-      type: object
-      properties:
-        output:
-          type: string
-          description: Output from the text generation model, if defined
-        error:
-          type: string
-          description: Error from the generation node, if defined
     AiGenerateRequest:
       type: object
       properties:
@@ -560,94 +709,52 @@ components:
           type: string
       required:
       - generated_text
-    AiRequestImageGenerationTagsResponse:
+    AiGenerateVoiceRequest:
       type: object
       properties:
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/AiRequestImageGenerationTag'
-      required:
-      - tags
-    AiGeneratePromptRequest:
-      type: object
-      properties:
-        model:
-          default: euterpe-v2
-          enum:
-          - 2.7B
-          - 6B-v4
-          - euterpe-v2
-          - genji-python-6b
-          - genji-jp-6b
-          - genji-jp-6b-v2
-          - krake-v2
-          - hypebot
-          - infillmodel
-          - cassandra
-          - sigurd-2.9b-v1
-          - blue
-          - red
-          - green
-          - purple
-          - clio-v1
-          - kayra-v1
+        text:
           type: string
-          description: Used text generation model
-        prompt:
+        seed:
           type: string
-          minLength: 1
-          maxLength: 40000
-          description: Input for the text generation model
-          example: Text generation example.
-        temp:
+        voice:
           type: number
-          minimum: 0.1
-          maximum: 100
-        tokens_to_generate:
-          type: number
-          minimum: 1
-          maximum: 200
-      required:
-      - model
-      - prompt
-      - temp
-      - tokens_to_generate
-    AiAnnotateImageRequest:
-      type: object
-      properties:
-        model:
-          enum:
-          - canny
-          - hed
-          - midas
-          - mlsd
-          - openpose
-          - uniformer
-          - fake_scribble
-          type: string
-          description: Model to use
-        parameters:
-          type: object
-          description: Annotation parameters (model specific)
-      required:
-      - model
-      - parameters
-    AiGenerateStreamableResponse:
-      type: object
-      properties:
-        ptr:
-          type: number
-          description: Incrementing token pointer
-        token:
-          type: string
-          description: Generated token
-        final:
+        opus:
           type: boolean
-          description: Set to true if the token is final and the generation ended
-        error:
+        version:
           type: string
-          description: Error from the generation node, if defined. Usually means the end of stream
+          enum:
+          - v1
+          - v2
+      required:
+      - text
+      - seed
+      - voice
+      - opus
+      - version
+    AiUpscaleImageRequest:
+      type: object
+      properties:
+        image:
+          type: string
+          description: Image in base64
+        width:
+          type: number
+          description: Width of the input image
+        height:
+          type: number
+          description: Height of the input image
+        scale:
+          type: number
+          enum:
+          - 2
+          - 4
+          description: Upscale factor
+          default: 4
+      required:
+      - image
+      - width
+      - height
+      - scale
     AiGenerateParameters:
       type: object
       properties:
@@ -849,122 +956,6 @@ components:
       - min_length
       - max_length
       - force_emotion
-    AiGenerateVoiceRequest:
-      type: object
-      properties:
-        text:
-          type: string
-        seed:
-          type: string
-        voice:
-          type: number
-        opus:
-          type: boolean
-        version:
-          type: string
-          enum:
-          - v1
-          - v2
-      required:
-      - text
-      - seed
-      - voice
-      - opus
-      - version
-    AiGenerateImageResponse:
-      type: object
-      properties:
-        ptr:
-          type: number
-          description: Incrementing version pointer
-        image:
-          type: string
-          description: Generated image in base64
-        final:
-          type: boolean
-          description: Set to true if the image is final and the generation ended
-        error:
-          type: string
-          description: Error from the generation node, if defined. Usually means the end of stream
-    AiGenerateImageRequest:
-      type: object
-      properties:
-        input:
-          type: string
-          minLength: 1
-          maxLength: 40000
-          description: Input for the text generation model
-          example: Image generation example.
-        model:
-          enum:
-          - nai-diffusion
-          - safe-diffusion
-          - nai-diffusion-furry
-          - custom
-          - nai-diffusion-inpainting
-          - nai-diffusion-3-inpainting
-          - safe-diffusion-inpainting
-          - furry-diffusion-inpainting
-          - kandinsky-vanilla
-          - nai-diffusion-2
-          - nai-diffusion-3
-          type: string
-          description: Used image generation model
-        action:
-          enum:
-          - generate
-          - img2img
-          - infill
-          type: string
-          description: Action to use, default is generate
-        parameters:
-          type: object
-          description: Generation parameters (model specific)
-        url:
-          type: string
-          pattern: https:\/\/[0-9a-z\-\_]*\.tenant-novelai\.knative\.(chi\.coreweave\.com|[0-9a-z]+\.coreweave\.cloud)\/.*
-          description: Custom image generation URL
-      required:
-      - input
-      - model
-      - parameters
-    AiUpscaleImageRequest:
-      type: object
-      properties:
-        image:
-          type: string
-          description: Image in base64
-        width:
-          type: number
-          description: Width of the input image
-        height:
-          type: number
-          description: Height of the input image
-        scale:
-          type: number
-          enum:
-          - 2
-          - 4
-          description: Upscale factor
-          default: 4
-      required:
-      - image
-      - width
-      - height
-      - scale
-    AiRequestImageGenerationTag:
-      type: object
-      properties:
-        tag:
-          type: string
-        count:
-          type: number
-        confidence:
-          type: number
-      required:
-      - tag
-      - count
-      - confidence
     ApiError:
       type: object
       properties:
@@ -975,6 +966,15 @@ components:
       required:
       - statusCode
       - message
+    AiRequestImageGenerationTagsResponse:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/AiRequestImageGenerationTag'
+      required:
+      - tags
   securitySchemes:
     bearer:
       scheme: bearer

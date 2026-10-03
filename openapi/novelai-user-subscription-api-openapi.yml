@@ -123,16 +123,6 @@ components:
           description: New plan SKU
       required:
       - newSubscriptionPlan
-    ApiError:
-      type: object
-      properties:
-        statusCode:
-          type: number
-        message:
-          type: string
-      required:
-      - statusCode
-      - message
     BindSubscriptionRequest:
       type: object
       properties:
@@ -156,6 +146,16 @@ components:
       required:
       - paymentProcessor
       - subscriptionId
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
   securitySchemes:
     bearer:
       scheme: bearer

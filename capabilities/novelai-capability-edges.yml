@@ -1,0 +1,27 @@
+slug: novelai
+provider: NovelAI
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: User Subscription
+  spec_file: novelai-user-subscription-api-openapi.yml
+  capability_id: BC-4240.40
+  capability_id_l1: BC-4240
+  capability_name: Subscription Modification
+  confidence: 0.75
+  evidence: POST /user/subscription/change  SubscriptionController_changeSubscriptionPlan  Subscription
+    controller change subscription plan
+  reason: Operations bind a subscription to an account and change the subscription plan for a monthly
+    SaaS subscription service, which is in-life subscription lifecycle work. Plan change maps most closely
+    to Subscription Modification; the 'bind' operation edges towards provisioning, hence some sub-capability
+    ambiguity.

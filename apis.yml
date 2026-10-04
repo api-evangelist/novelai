@@ -117,6 +117,9 @@ apis:
   - type: OpenAPI
     url: openapi/novelai-user-subscription-api-openapi.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/novelai-capability-edges.yml
+    name: NovelAI Business Capability Map
   - type: AgenticAccess
     url: agentic-access/novelai-agentic-access.yml
   - type: VulnerabilityDisclosure

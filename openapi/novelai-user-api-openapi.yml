@@ -1303,54 +1303,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    RecoveryFinishRequest:
-      type: object
-      properties:
-        recoveryToken:
-          type: string
-          minLength: 16
-          description: Recovery token provided in the email letter
-        newAccessKey:
-          type: string
-          minLength: 64
-          maxLength: 64
-          description: New access key
-        deleteContent:
-          type: boolean
-          description: Should the server reset keystore and remove objects of stories and storycontent type?
-          default: false
-      required:
-      - recoveryToken
-      - newAccessKey
-      - deleteContent
-    EmailVerificationRequest:
-      type: object
-      properties:
-        verificationToken:
-          type: string
-          minLength: 64
-          maxLength: 64
-        uiLanguage:
-          type: object
-      required:
-      - verificationToken
-    ChangeAccessKeyRequest:
-      type: object
-      properties:
-        currentAccessKey:
-          type: string
-          minLength: 64
-          description: Current access key
-        newAccessKey:
-          type: string
-          minLength: 64
-          description: New access key
-        newEmail:
-          type: string
-          description: New email address
-      required:
-      - currentAccessKey
-      - newAccessKey
     GoogleSSORequest:
       type: object
       properties:
@@ -1359,333 +1311,6 @@ components:
           description: Google SSO ID token
       required:
       - idToken
-    UserAccountDataResponse:
-      type: object
-      properties:
-        priority:
-          $ref: '#/components/schemas/PriorityResponse'
-        subscription:
-          $ref: '#/components/schemas/SubscriptionResponse'
-        keystore:
-          $ref: '#/components/schemas/GetKeystoreResponse'
-        settings:
-          type:
-          - string
-          - 'null'
-        information:
-          $ref: '#/components/schemas/AccountInformationResponse'
-      required:
-      - priority
-      - subscription
-      - keystore
-      - settings
-      - information
-    CreatePersistentTokenResponse:
-      type: object
-      properties:
-        token:
-          type:
-          - string
-          - 'null'
-      required:
-      - token
-    UserData:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Object ID
-        meta:
-          type: string
-          maxLength: 128
-          description: Accompanying non confidential information
-        data:
-          type: string
-          description: Base64-encoded buffer
-        lastUpdatedAt:
-          type: number
-          description: UNIX timestamp
-        changeIndex:
-          type: number
-          description: Incremental revision of the object
-        type:
-          type: string
-          minLength: 1
-          maxLength: 16
-      required:
-      - id
-      - meta
-      - data
-      - lastUpdatedAt
-      - changeIndex
-      - type
-    SubscriptionResponse:
-      type: object
-      properties:
-        tier:
-          type: number
-          description: Subscription internal tier number, see SubscriptionTiers enum
-        active:
-          type: boolean
-          description: Is subscription active as of the moment of the request
-        expiresAt:
-          type: number
-          description: UNIX timestamp of subscription expiration
-        perks:
-          description: Subscription perks
-          allOf:
-          - $ref: '#/components/schemas/SubscriptionTierPerks'
-        paymentProcessorData:
-          type: object
-          description: Payment processor arbitrary data
-        trainingStepsLeft:
-          description: Amount of available module training steps left
-          allOf:
-          - $ref: '#/components/schemas/SubscriptionAvailableTrainingSteps'
-        isGracePeriod:
-          type: boolean
-          description: Whether the user subscription is in grace period
-      required:
-      - tier
-      - active
-      - expiresAt
-      - perks
-      - paymentProcessorData
-      - trainingStepsLeft
-      - isGracePeriod
-    ApiError:
-      type: object
-      properties:
-        statusCode:
-          type: number
-        message:
-          type: string
-      required:
-      - statusCode
-      - message
-    SuccessfulLoginResponse:
-      type: object
-      properties:
-        accessToken:
-          type: string
-          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
-      required:
-      - accessToken
-    SubscriptionTierPerks:
-      type: object
-      properties:
-        maxPriorityActions:
-          type: number
-          description: Amount of max priority actions
-        startPriority:
-          type: number
-          description: Start priority amount
-        contextTokens:
-          type: number
-          description: Amount of granted context tokens
-        unlimitedMaxPriority:
-          type: boolean
-          description: Is max priority unlimited
-        moduleTrainingSteps:
-          type: number
-          description: Amount of module training steps granted every month
-      required:
-      - maxPriorityActions
-      - startPriority
-      - contextTokens
-      - unlimitedMaxPriority
-      - moduleTrainingSteps
-    EmailVerificationStartRequest:
-      type: object
-      properties:
-        email:
-          type: string
-      required:
-      - email
-    CreatePersistentTokenInput:
-      type: object
-      properties:
-        overwrite:
-          type: boolean
-          description: Overwrite existing token
-    ObjectsResponse:
-      type: object
-      properties:
-        objects:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserData'
-      required:
-      - objects
-    UserSubmissionInput:
-      type: object
-      properties:
-        data:
-          type: string
-          description: Base64-encoded buffer
-        dataName:
-          type: string
-          maxLength: 256
-        authorName:
-          type: string
-          maxLength: 256
-        authorEmail:
-          type: string
-          maxLength: 256
-        socials:
-          type: string
-          maxLength: 4096
-        mediums:
-          type: string
-          maxLength: 4096
-        event:
-          type: string
-          maxLength: 256
-      required:
-      - data
-      - dataName
-      - authorName
-      - authorEmail
-      - socials
-      - mediums
-      - event
-    ChangeMailingListRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          description: Current email address. Not required if user has plaintext email stored
-        marketingConsent:
-          type: boolean
-          description: Marketing email consent state
-        uiLanguage:
-          type: object
-      required:
-      - marketingConsent
-    BatchDeleteRequest:
-      type: object
-      properties:
-        types:
-          type: array
-          description: Array of object types to delete (e.g., stories, storycontent, modules, presets)
-          items:
-            type: string
-          example:
-          - stories
-          - storycontent
-          minItems: 1
-      required:
-      - types
-    UserDataInput:
-      type: object
-      properties:
-        meta:
-          type: string
-          maxLength: 128
-          description: Accompanying non confidential information
-        data:
-          type: string
-          description: Base64-encoded buffer
-        changeIndex:
-          type: number
-          description: Current change index
-      required:
-      - meta
-      - data
-    UpdateKeystoreRequest:
-      type: object
-      properties:
-        keystore:
-          type: string
-          description: Base64-encoded keystore (or empty string to clear)
-        changeIndex:
-          type: number
-          description: Current change index
-      required:
-      - keystore
-    SubscriptionAvailableTrainingSteps:
-      type: object
-      properties:
-        fixedTrainingStepsLeft:
-          type: number
-          description: Amount of available fixed module training steps left (reset every month)
-        purchasedTrainingSteps:
-          type: number
-          description: Amount of available purchased module training steps left
-      required:
-      - fixedTrainingStepsLeft
-      - purchasedTrainingSteps
-    UpsertConsentRequest:
-      type: object
-      properties:
-        jurisdiction:
-          type: string
-          description: Jurisdiction for the user consents
-          example: US
-        analyticsConsent:
-          type: boolean
-          description: Consent for analytics tracking
-          example: true
-        marketingConsent:
-          type: boolean
-          description: Consent for marketing communications
-          example: true
-        personalizationConsent:
-          type: boolean
-          description: Consent for personalization
-          example: true
-        essentialsConsent:
-          type: boolean
-          description: Consent for essential cookies
-          example: true
-        globalOptOut:
-          type: boolean
-          description: Global opt-out status
-          example: false
-      required:
-      - jurisdiction
-      - analyticsConsent
-      - marketingConsent
-      - personalizationConsent
-      - essentialsConsent
-      - globalOptOut
-    UserSubmissionVoteInput:
-      type: object
-      properties:
-        id:
-          type: string
-      required:
-      - id
-    DeletionStartRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          description: Target email for account deletion
-      required:
-      - email
-    DeletionFinishRequest:
-      type: object
-      properties:
-        deletionToken:
-          type: string
-          minLength: 16
-          description: Deletion token provided in the email letter
-      required:
-      - deletionToken
-    PriorityResponse:
-      type: object
-      properties:
-        maxPriorityActions:
-          type: number
-        nextRefillAt:
-          type: number
-        taskPriority:
-          type: number
-      required:
-      - maxPriorityActions
-      - nextRefillAt
-      - taskPriority
     LoginRequest:
       type: object
       properties:
@@ -1699,6 +1324,13 @@ components:
           description: ReCAPTCHA response token for the novelai.net domain. This is optional at this moment(but we will make it mandatory)
       required:
       - key
+    UserSubmissionVoteInput:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
     AccountInformationResponse:
       type: object
       properties:
@@ -1738,6 +1370,92 @@ components:
       - accountCreatedAt
       - banStatus
       - banMessage
+    SubscriptionResponse:
+      type: object
+      properties:
+        tier:
+          type: number
+          description: Subscription internal tier number, see SubscriptionTiers enum
+        active:
+          type: boolean
+          description: Is subscription active as of the moment of the request
+        expiresAt:
+          type: number
+          description: UNIX timestamp of subscription expiration
+        perks:
+          description: Subscription perks
+          allOf:
+          - $ref: '#/components/schemas/SubscriptionTierPerks'
+        paymentProcessorData:
+          type: object
+          description: Payment processor arbitrary data
+        trainingStepsLeft:
+          description: Amount of available module training steps left
+          allOf:
+          - $ref: '#/components/schemas/SubscriptionAvailableTrainingSteps'
+        isGracePeriod:
+          type: boolean
+          description: Whether the user subscription is in grace period
+      required:
+      - tier
+      - active
+      - expiresAt
+      - perks
+      - paymentProcessorData
+      - trainingStepsLeft
+      - isGracePeriod
+    ObjectsResponse:
+      type: object
+      properties:
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserData'
+      required:
+      - objects
+    RecoveryStartRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Target email for account recovery
+        locale:
+          type: object
+          enum:
+          - en
+          - jp
+          description: Locale used by the user, e.g. 'en' or 'jp
+      required:
+      - email
+    SuccessfulLoginResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
+      required:
+      - accessToken
+    UserAccountDataResponse:
+      type: object
+      properties:
+        priority:
+          $ref: '#/components/schemas/PriorityResponse'
+        subscription:
+          $ref: '#/components/schemas/SubscriptionResponse'
+        keystore:
+          $ref: '#/components/schemas/GetKeystoreResponse'
+        settings:
+          type:
+          - string
+          - 'null'
+        information:
+          $ref: '#/components/schemas/AccountInformationResponse'
+      required:
+      - priority
+      - subscription
+      - keystore
+      - settings
+      - information
     CreateUserRequest:
       type: object
       properties:
@@ -1775,28 +1493,100 @@ components:
       - key
       - emailCleartext
       - allowMarketingEmails
-    RecoveryStartRequest:
+    EmailVerificationRequest:
+      type: object
+      properties:
+        verificationToken:
+          type: string
+          minLength: 64
+          maxLength: 64
+        uiLanguage:
+          type: object
+      required:
+      - verificationToken
+    DeletionStartRequest:
       type: object
       properties:
         email:
           type: string
-          description: Target email for account recovery
-        locale:
-          type: object
-          enum:
-          - en
-          - jp
-          description: Locale used by the user, e.g. 'en' or 'jp
+          description: Target email for account deletion
       required:
       - email
-    CreateUserResponse:
+    UpdateKeystoreRequest:
       type: object
       properties:
-        accessToken:
+        keystore:
           type: string
-          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
+          description: Base64-encoded keystore (or empty string to clear)
+        changeIndex:
+          type: number
+          description: Current change index
       required:
-      - accessToken
+      - keystore
+    UpsertConsentRequest:
+      type: object
+      properties:
+        jurisdiction:
+          type: string
+          description: Jurisdiction for the user consents
+          example: US
+        analyticsConsent:
+          type: boolean
+          description: Consent for analytics tracking
+          example: true
+        marketingConsent:
+          type: boolean
+          description: Consent for marketing communications
+          example: true
+        personalizationConsent:
+          type: boolean
+          description: Consent for personalization
+          example: true
+        essentialsConsent:
+          type: boolean
+          description: Consent for essential cookies
+          example: true
+        globalOptOut:
+          type: boolean
+          description: Global opt-out status
+          example: false
+      required:
+      - jurisdiction
+      - analyticsConsent
+      - marketingConsent
+      - personalizationConsent
+      - essentialsConsent
+      - globalOptOut
+    UserDataInput:
+      type: object
+      properties:
+        meta:
+          type: string
+          maxLength: 128
+          description: Accompanying non confidential information
+        data:
+          type: string
+          description: Base64-encoded buffer
+        changeIndex:
+          type: number
+          description: Current change index
+      required:
+      - meta
+      - data
+    BatchDeleteRequest:
+      type: object
+      properties:
+        types:
+          type: array
+          description: Array of object types to delete (e.g., stories, storycontent, modules, presets)
+          items:
+            type: string
+          example:
+          - stories
+          - storycontent
+          minItems: 1
+      required:
+      - types
     GetKeystoreResponse:
       type: object
       properties:
@@ -1806,6 +1596,55 @@ components:
           - 'null'
       required:
       - keystore
+    CreateUserResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Access Token to be used in the Authorization header in the format of "Bearer ${accessToken}"
+      required:
+      - accessToken
+    SubscriptionTierPerks:
+      type: object
+      properties:
+        maxPriorityActions:
+          type: number
+          description: Amount of max priority actions
+        startPriority:
+          type: number
+          description: Start priority amount
+        contextTokens:
+          type: number
+          description: Amount of granted context tokens
+        unlimitedMaxPriority:
+          type: boolean
+          description: Is max priority unlimited
+        moduleTrainingSteps:
+          type: number
+          description: Amount of module training steps granted every month
+      required:
+      - maxPriorityActions
+      - startPriority
+      - contextTokens
+      - unlimitedMaxPriority
+      - moduleTrainingSteps
+    ChangeAccessKeyRequest:
+      type: object
+      properties:
+        currentAccessKey:
+          type: string
+          minLength: 64
+          description: Current access key
+        newAccessKey:
+          type: string
+          minLength: 64
+          description: New access key
+        newEmail:
+          type: string
+          description: New email address
+      required:
+      - currentAccessKey
+      - newAccessKey
     OsanoExternalIdResponse:
       type: object
       properties:
@@ -1815,6 +1654,84 @@ components:
           example: 4vxu3LyTNTcoQXdCLQMvZF9Spi-vxfmTJVrj8P7hoLM
       required:
       - externalOsanoId
+    ChangeMailingListRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Current email address. Not required if user has plaintext email stored
+        marketingConsent:
+          type: boolean
+          description: Marketing email consent state
+        uiLanguage:
+          type: object
+      required:
+      - marketingConsent
+    UserSubmissionInput:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Base64-encoded buffer
+        dataName:
+          type: string
+          maxLength: 256
+        authorName:
+          type: string
+          maxLength: 256
+        authorEmail:
+          type: string
+          maxLength: 256
+        socials:
+          type: string
+          maxLength: 4096
+        mediums:
+          type: string
+          maxLength: 4096
+        event:
+          type: string
+          maxLength: 256
+      required:
+      - data
+      - dataName
+      - authorName
+      - authorEmail
+      - socials
+      - mediums
+      - event
+    PriorityResponse:
+      type: object
+      properties:
+        maxPriorityActions:
+          type: number
+        nextRefillAt:
+          type: number
+        taskPriority:
+          type: number
+      required:
+      - maxPriorityActions
+      - nextRefillAt
+      - taskPriority
+    RecoveryFinishRequest:
+      type: object
+      properties:
+        recoveryToken:
+          type: string
+          minLength: 16
+          description: Recovery token provided in the email letter
+        newAccessKey:
+          type: string
+          minLength: 64
+          maxLength: 64
+          description: New access key
+        deleteContent:
+          type: boolean
+          description: Should the server reset keystore and remove objects of stories and storycontent type?
+          default: false
+      required:
+      - recoveryToken
+      - newAccessKey
+      - deleteContent
     GiftKeysResponse:
       type: object
       properties:
@@ -1824,6 +1741,89 @@ components:
             type: object
       required:
       - giftKeys
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
+    CreatePersistentTokenResponse:
+      type: object
+      properties:
+        token:
+          type:
+          - string
+          - 'null'
+      required:
+      - token
+    UserData:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Object ID
+        meta:
+          type: string
+          maxLength: 128
+          description: Accompanying non confidential information
+        data:
+          type: string
+          description: Base64-encoded buffer
+        lastUpdatedAt:
+          type: number
+          description: UNIX timestamp
+        changeIndex:
+          type: number
+          description: Incremental revision of the object
+        type:
+          type: string
+          minLength: 1
+          maxLength: 16
+      required:
+      - id
+      - meta
+      - data
+      - lastUpdatedAt
+      - changeIndex
+      - type
+    SubscriptionAvailableTrainingSteps:
+      type: object
+      properties:
+        fixedTrainingStepsLeft:
+          type: number
+          description: Amount of available fixed module training steps left (reset every month)
+        purchasedTrainingSteps:
+          type: number
+          description: Amount of available purchased module training steps left
+      required:
+      - fixedTrainingStepsLeft
+      - purchasedTrainingSteps
+    DeletionFinishRequest:
+      type: object
+      properties:
+        deletionToken:
+          type: string
+          minLength: 16
+          description: Deletion token provided in the email letter
+      required:
+      - deletionToken
+    CreatePersistentTokenInput:
+      type: object
+      properties:
+        overwrite:
+          type: boolean
+          description: Overwrite existing token
+    EmailVerificationStartRequest:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
   securitySchemes:
     bearer:
       scheme: bearer

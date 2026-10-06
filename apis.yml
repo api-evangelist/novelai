@@ -43,7 +43,7 @@ tags_raw:
   - Image-Generation
 url: https://raw.githubusercontent.com/api-evangelist/novelai/refs/heads/main/apis.yml
 created: '2024-07-02'
-modified: '2026-04-28'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: novelai:novelai
@@ -117,6 +117,8 @@ apis:
   - type: OpenAPI
     url: openapi/novelai-user-subscription-api-openapi.yml
 common:
+  - url: https://novelai.net/stories
+    type: Blog
   - type: CapabilityMap
     url: capabilities/novelai-capability-edges.yml
     name: NovelAI Business Capability Map
